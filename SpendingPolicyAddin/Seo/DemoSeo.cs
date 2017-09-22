@@ -1,24 +1,52 @@
 ﻿using SharpExcelAddinBase.ObjectSystem;
 using SharpExcelAddinBase.TemplateFunction;
+using SharpHelper.Util;
 
 namespace SpendingPolicyAddin.Seo
 {
-    [TemplatedSeoMethodProvider("Two"), TemplatedSeo("Two")]
-    public class TwoNumbers : SharpExcelObject
-    {
-        public double Num1 { get; }
-        public double Num2 { get; }
 
-        public TwoNumbers(string name, double num1, double num2) : base(name)
+    [TemplatedSeo("Underlying")]
+    public class Stock : SharpExcelObject
+    {
+        public Stock(string name, double price, double mu, double sigma, double dividend) : base(name)
         {
-            this.Num1 = num1;
-            this.Num2 = num2;
+            this.Price = price;
+            this.Mu = mu;
+            this.Sigma = sigma;
+            this.Dividend = dividend;
         }
 
-        [TemplatedSeoMethod]
-        public double SumOfThree(double num3)
+        public double Price { get; }
+        public double Mu { get; }
+        public double Sigma { get; }
+        public double Dividend { get; }
+    }
+
+    public class StockOption : SharpExcelObject
+    {
+        public StockOption(string name, double strike, double maturity, SharpExcelObject underlying) : base(name)
         {
-            return this.Num1 + this.Num2 + num3;
+            this.Strike = strike;
+            this.Maturity = maturity;
+            this.Underlying = underlying.To<Stock>();
+        }
+
+        public double Strike { get; }
+        public double Maturity { get; }
+        public Stock Underlying { get; }
+    }
+
+    [TemplatedSeo("Derivatives"), TemplatedSeoMethodProvider("Derivatives")]
+    public class EuroCallOption : StockOption
+    {
+        public EuroCallOption(string name, double strike, double maturity, SharpExcelObject underlying) :
+            base(name, strike, maturity, underlying)
+        { }
+
+        [TemplatedSeoMethod]
+        public object CheckUnderlying()
+        {
+            return this.Underlying;
         }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Seo\DemoSeo.cs" />
     <Compile Include="SharpRobbin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sub\DemoSub.cs" />
     <Compile Include="Udf\DemoUdf.cs" />
   </ItemGroup>
   <ItemGroup>
