@@ -1,0 +1,881 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpExcelAddinBase</name>
+    </assembly>
+    <members>
+        <member name="T:SharpExcelAddinBase.Addin">
+            <summary>
+            Register add-in into Excel
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Addin.AutoOpen">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpExcelAddinBase.Addin.AutoClose">
+            <inheritdoc />
+        </member>
+        <member name="T:SharpExcelAddinBase.AddInHelper">
+            <summary>
+            Helper class provides functionalities of register add-in into Excel
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.AddInHelper.AutoOpen">
+            <summary>
+            Default implementation of <see cref="M:SharpExcelAddinBase.Addin.AutoOpen"/>. Register UDFs and subroutines into Excel
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper">
+            <summary>
+            Singleton class that holds <see cref="T:SharpHelper.Object.SharpObject"/> in each opening workbooks at runtime
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.GetCache(System.String,System.Boolean)">
+            <summary>
+            Get the <see cref="T:SharpHelper.Object.SharpCache"/> object linked to the workbook
+            </summary>
+            <param name="book">Workbook name</param>
+            <param name="create">If the cache doesn't exist, create one</param>
+            <returns>Cache linked to the workbook</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Register(System.String,SharpHelper.Object.SharpObject)">
+            <summary>
+            Register a <see cref="T:SharpHelper.Object.SharpObject"/> into the current cache
+            </summary>
+            <param name="name">Name of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <param name="obj">Object</param>
+            <returns>ID of the <see cref="T:SharpHelper.Object.SharpObject"/></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Remove(System.String)">
+            <summary>
+            Remove a <see cref="T:SharpHelper.Object.SharpObject"/> from the current cache
+            </summary>
+            <param name="name">Name of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <returns>True if the operation runs successfully</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.PrintId(System.String)">
+            <summary>
+            Cast name of object into ID 
+            </summary>
+            <param name="name">Name of the object</param>
+            <returns>ID of the object</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.PrintName(System.String)">
+            <summary>
+            Cast ID of object into name
+            </summary>
+            <param name="id">ID of the object</param>
+            <returns>Name of the object</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.IsValidId(System.String)">
+            <summary>
+            Check ID is valid
+            </summary>
+            <param name="id">ID of the object</param>
+            <returns/>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Get(System.String,System.String)">
+            <summary>
+            Get a <see cref="T:SharpHelper.Object.SharpObject"/> from a cache
+            </summary>
+            <param name="id">ID of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <param name="book">Workbook name</param>
+            <returns>object or null</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.ViewObject(System.String,System.String)">
+            <summary>
+            View a <see cref="T:SharpHelper.Object.SharpObject"/> in grid format in Excel
+            </summary>
+            <param name="id">ID of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <param name="book">Workbook name, current workbook if blank</param>
+            <returns>Grid with the first column is property names and the second column is values</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.ViewCache(System.String)">
+            <summary>
+            View list of SharpExcelObjects in grid by book name in Excel
+            </summary>
+            <param name="book">"Workbook name, current workbook if blank"</param>
+            <returns>Grid contains objects IDs, types, and initial cells</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.ViewObjectProperty(System.String,System.String,System.String)">
+            <summary>
+            View a property of <see cref="T:SharpHelper.Object.SharpObject"/> by name. 
+            Please refer to <seealso cref="M:SharpHelper.Object.SharpObject.Get(System.String)"/>
+            </summary>
+            <param name="id">ID of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <param name="property">Property name</param>
+            <param name="book">Workbook name, current workbook if blank</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.InvokeObjectMethod(System.String,System.String,System.Object[],System.String)">
+            <summary>
+            Invoke a method of a <see cref="T:SharpHelper.Object.SharpObject"/> in Excel. 
+            Please refer to <seealso cref="M:SharpHelper.Object.SharpObject.Invoke(System.String,System.Object[])"/>
+            </summary>
+            <param name="id">ID of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <param name="method">SharpObject method name</param>
+            <param name="paras">Method Parameters</param>
+            <param name="book">Workbook name, current workbook if blank</param>
+            <returns>Grid with the first column is property names and the second column is values</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.SingleCellWrap(System.Object,System.String)">
+            <summary>
+            Wrap a value into an one-cell format. If value is an enumerable, a 
+            <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpValueContainer"/> will be created and registered
+            </summary>
+            <param name="value">Value to be wrapped</param>
+            <param name="name">Name for the <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpValueContainer"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject">
+            <summary>
+            Base class of all Excel object in Sharp Excel Add-in Base
+            </summary>
+        </member>
+        <member name="F:SharpExcelAddinBase.ObjectSystem.SharpExcelObject.SEO_CAT">
+            <summary>
+            Default category of object functions
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpExcelObject.#ctor(System.String)">
+            <inheritdoc/>
+             <param name="name">Object unique name</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.ObjectSystem.SharpExcelObject.Init">
+            <summary>
+            Where this object is initialized in Excel
+            </summary>
+        </member>
+        <member name="F:SharpExcelAddinBase.ObjectSystem.SharpExcelObject.Id">
+            <summary>
+            ID of this object
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.ObjectSystem.SharpRef">
+            <summary>
+            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> that reference a range in Excel worksheet
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.ObjectSystem.SharpRef.Address">
+            <summary>
+            Address of the reference
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpRef.Ref(System.Object,System.String)">
+            <summary>
+            Reference a range in Excel
+            </summary>
+            <param name="range">Range to be referenced</param>
+            <param name="name">Name of this reference, if blank, helper will give it a name</param>
+            <returns>ID of the <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpRef"/></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpRef.Quote(System.String,System.String)">
+            <summary>
+            Get the value from a <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpRef"/> or ADDRESS function in Excel
+            </summary>
+            <param name="id">ID of the <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpRef"/> or value from ADDRESS function</param>
+            <param name="book">Workbook name</param>
+            <returns>Value of the range</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.ObjectSystem.SharpValueContainer">
+            <summary>
+            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> that hold a complex value in Excel worksheet
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpValueContainer.#ctor(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpExcelAddinBase.ObjectSystem.SharpValueContainer.Value">
+            <summary>
+            Value in hold
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpValueContainer.ExtractValue(System.String,System.String)">
+            <summary>
+            Get the value from a <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpValueContainer"/> in Excel
+            </summary>
+            <param name="id">ID of the <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpValueContainer"/></param>
+            <param name="book">Workbook name</param>
+            <returns>Value of the range</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpValueContainer.Wrap(System.Object,System.String)">
+            <summary>
+            Wrap a complex value in Excel
+            </summary>
+            <param name="value">Value to be referenced</param>
+            <param name="name">Name of this reference, if blank, helper will give it a name</param>
+            <returns>ID of the <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpValueContainer"/></returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.Ribbon.RibbonXmlHelper">
+            <summary>
+            Helper class that provides functionalities for building custom Ribbon UI
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.ToXml(System.Xml.XmlElement)">
+            <summary>
+            Get XML string from an <see cref="T:System.Xml.XmlElement"/>
+            </summary>
+            <param name="element">XML element</param>
+            <returns>XML string</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.AddAttribute(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            Add an XML attribute to an XML element if value is not null or white spaces
+            </summary>
+            <param name="node">XML element</param>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewCustomUi(System.Collections.Generic.IEnumerable{System.Xml.XmlElement},System.String)">
+            <summary>
+            Generate a new custom Ribbon UI with XML tabs
+            </summary>
+            <param name="tabList">XML Ribbon tabs</param>
+            <param name="loadImage">Name of override loadImage function</param>
+            <returns>XML string of custom Ribbon UI</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewTab(System.String,System.Collections.Generic.IEnumerable{System.Xml.XmlElement},System.String)">
+            <summary>
+            Generate a new custom XML Ribbon tab
+            </summary>
+            <param name="id">Unique ID for the tab</param>
+            <param name="groupList">XML Ribbon groups in this tab</param>
+            <param name="label">Tab caption that shows in Excel</param>
+            <returns>XML Ribbon tab</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewGroup(System.String,System.Collections.Generic.IEnumerable{System.Xml.XmlElement},System.String,System.String)">
+            <summary>
+            Generate a new custom XML Ribbon group
+            </summary>
+            <param name="id">Unique ID for the group</param>
+            <param name="controlList">XML Ribbon controls in this group</param>
+            <param name="label">Group caption that shows in Excel</param>
+            <param name="autoScale">Auto size group</param>
+            <returns>XML Ribbon group</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewMenu(System.String,System.Collections.Generic.IEnumerable{System.Xml.XmlElement},System.String,System.String,System.String,System.String)">
+            <summary>
+            Generate a new custom XML Ribbon menu
+            </summary>
+            <param name="id">Unique ID for the menu</param>
+            <param name="controlList">XML Ribbon controls in this menu</param>
+            <param name="label">Menu caption that shows in Excel</param>
+            <param name="image">Custom image name to be used</param>
+            <param name="imageMso">Office defined image name</param>
+            <param name="size">Menu size, could be either "large", "middle", or "small"</param>
+            <returns>XML Ribbon menu</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewSubMenu(System.String,System.Collections.Generic.IEnumerable{System.Xml.XmlElement},System.String)">
+            <summary>
+            Generate a new custom XML Ribbon sub menu
+            </summary>
+            <param name="id">Unique ID for the menu</param>
+            <param name="controlList">XML Ribbon controls in this menu</param>
+            <param name="label">Menu caption that shows in Excel</param>
+            <returns>XML Ribbon menu</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewDynamicMenuContent(System.Collections.Generic.IEnumerable{System.Xml.XmlElement})">
+            <summary>
+            Generate a new custom XML Ribbon menu contents for dynamic menu
+            </summary>
+            <param name="controlList">XML Ribbon controls in this menu</param>
+            <returns>XML Ribbon dynamic menu content</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewDynamicMenu(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Generate a new custom XML Ribbon dynamic menu
+            </summary>
+            <param name="id">Unique ID for the menu</param>
+            <param name="getContent">Function that returns the XML Ribbon dynamic menu content in this menu</param>
+            <param name="label">Menu caption that shows in Excel</param>
+            <param name="image">Custom image name to be used</param>
+            <param name="imageMso">Office defined image name</param>
+            <param name="size">Menu size, could be either "large", "middle", or "small"</param>
+            <returns>XML Ribbon dynamic menu</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewButton(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Generate a new custom XML Ribbon button
+            </summary>
+            <param name="id">Unique ID for the button</param>
+            <param name="label">Button caption that shows in Excel</param>
+            <param name="onAction">Name of the method when click this button</param>
+            <param name="image">Custom image name to be used</param>
+            <param name="imageMso">Office defined image name</param>
+            <param name="size">Button size, could be either "large", "middle", or "small"</param>
+            <returns>XML Ribbon button</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.RibbonXmlHelper.NewMenuButton(System.String,System.String,System.String)">
+            <summary>
+            Generate a new custom XML Ribbon button as a menu item
+            </summary>
+            <param name="id">Unique ID for the button</param>
+            <param name="label">Button caption that shows in Excel</param>
+            <param name="onAction">Name of the method when click this button</param>
+            <returns>XML Ribbon button</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.Ribbon.SharpRibbonHelper">
+            <summary>
+            Provide default implementation of custom Ribbon UI
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.GetUi(System.Collections.Generic.IEnumerable{System.Xml.XmlElement})">
+            <summary>
+            Generate Ribbon UI with default Sharp Excel Add-in Base UI and custom UI
+            </summary>
+            <param name="customGroups">Custom UI groups</param>
+            <returns>XML string of Ribbon UI</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="T:SharpExcelAddinBase.Ribbon.ISharpRibbon">
+            <summary>
+            Interface that make sure a custom Ribbon class can present the default Ribbon UI 
+            defined by Sharp Excel Add-in Base
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="T:SharpExcelAddinBase.Simulation.SimulationSeoBase`1">
+            <summary>
+            Base class for Monte Carlo simulation in Excel
+            </summary>
+            <typeparam name="T">Sample type</typeparam>
+        </member>
+        <member name="M:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.#ctor(System.String,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.Generated">
+            <summary>
+            If this simulation has been generated
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.Count">
+            <summary>
+            Sample size
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.Samples">
+            <summary>
+            Samples
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.GenerateSamples(System.Action{System.Object},System.Int32)">
+            <summary>
+            Generate samples
+            </summary>
+            <param name="progressDisplay">Method to display progress</param>
+            <param name="displayInt">Interval to update progress display</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.GenerateSample">
+            <summary>
+            Generate a sample
+            </summary>
+            <returns>A sample</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdfProvider">
+            <inheritdoc />
+            <summary>
+            Mark the class to be a provider of User Defined Function (UDF)
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdf">
+            <inheritdoc />
+            <summary>
+            Mark the public static method to be a User Defined Function (UDF)
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.#ctor(System.String)">
+            <inheritdoc/>
+            <param name="category">Sub-menu name in Ribbon UI</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.Category">
+            <summary>
+            Sub-menu name in Ribbon UI
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeo">
+            <inheritdoc />
+            <summary>
+            Mark the class to be a provider of Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/>
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSeo.#ctor(System.String)">
+            <inheritdoc/>
+            <param name="category">Sub-menu name in Ribbon UI</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeo.Category">
+            <summary>
+            Sub-menu name in Ribbon UI
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProvider">
+            <inheritdoc />
+            <summary>
+            Mark the class to be a provider of Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> Method
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProvider.#ctor(System.String)">
+            <inheritdoc />
+            <param name="category">Sub-menu name in Ribbon UI</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProvider.Category">
+            <summary>
+            Sub-menu name in Ribbon UI
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethod">
+            <inheritdoc />
+            <summary>
+            Mark the public non-static method to be a Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> Method
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSubProvider">
+            <inheritdoc />
+            <summary>
+            Mark the class to be a provider of Template Subroutine
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSub">
+            <summary>
+            Mark this public static method to be a Template Subroutine
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSub.#ctor(System.String)">
+            <inheritdoc/>
+            <param name="category">Sub-menu name in Ribbon UI</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSub.Category">
+            <summary>
+            Sub-menu name in Ribbon UI
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplateHelper">
+            <summary>
+            Helper class that provides Template Call functionalities in Excel
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplateHelper.TempCall(System.Object[0:,0:])">
+            <summary>
+            Call a method by a grid in Excel
+            </summary>
+            <param name="grid">Grid that contains the method template</param>
+            <returns>Method result</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplateHelper.CreateUdfTemp(System.String)">
+            <summary>
+            Insert a User Defined Function(UDF) template in the selection range in Excel
+            </summary>
+            <param name="udf">Name of UDF</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplateHelper.CreateSeoTemp(System.String)">
+            <summary>
+            Insert a <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> template in the selection range in Excel
+            </summary>
+            <param name="seoName">Type name</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplateHelper.CreateSeoFuncTemp(System.String,System.String)">
+            <summary>
+            Insert a <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> object method template in the selection range in Excel
+            </summary>
+            <param name="seoName">Type name</param>
+            <param name="methodName">Object method name</param>
+        </member>
+        <member name="F:SharpExcelAddinBase.TemplateFunction.TemplateHelper.StaticSubs">
+            <summary>
+            Template subroutines in the domain
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplateHelper.CreateSubTemp(System.String)">
+            <summary>
+            Insert a subroutine template in the selection range in Excel
+            </summary>
+            <param name="sub">Name of subroutine</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplateHelper.RunTemplatedSub">
+            <summary>
+            Run the subroutine from the selection in Excel
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.Regristration.CacheAttribute">
+            <summary>
+            Attribute to mark that a Excel function is cached
+            </summary>
+        </member>
+        <member name="F:SharpExcelAddinBase.Regristration.CacheAttribute.CacheTimeout">
+            <summary>
+            Cache refresh time
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Regristration.CacheAttribute.#ctor(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:SharpExcelAddinBase.Regristration.TimingAttribute">
+            <summary>
+            Attribute to mark that the function in Excel is timed
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.Regristration.SuppressInDialogAttribute">
+            <summary>
+            Attribute to mark that a Excel function that doesn't calculate in dialog
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Regristration.SuppressInDialogAttribute.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpExcelAddinBase.Regristration.SuppressInDialogAttribute.OnEntry(ExcelDna.Registration.FunctionExecutionArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpExcelAddinBase.Regristration.SuppressInDialogAttribute.OnSuccess(ExcelDna.Registration.FunctionExecutionArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpExcelAddinBase.Regristration.SuppressInDialogAttribute.OnException(ExcelDna.Registration.FunctionExecutionArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpExcelAddinBase.Regristration.SuppressInDialogAttribute.OnExit(ExcelDna.Registration.FunctionExecutionArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpExcelAddinBase.Regristration.SuppressInDialogFunctionExecutionHandler.SuppressInDialogSelector(ExcelDna.Registration.ExcelFunctionRegistration)">
+            <summary>
+            Currently only applied to functions that return object or string.
+            </summary>
+            <param name="functionRegistration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.Utility.ChartHelper">
+            <summary>
+            Helper class that provides functionalities of Excel charts
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ChartHelper.DrawXySmoothChart(Microsoft.Office.Interop.Excel.Worksheet,Microsoft.Office.Interop.Excel.Range,System.String,System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Draw a X-Y-smooth-line chart in Excel
+            </summary>
+            <param name="sheet">Worksheet the chart will be located</param>
+            <param name="range">Data source in the worksheet</param>
+            <param name="title">Chart title</param>
+            <param name="xTitle">X axis title</param>
+            <param name="yTitle">Y axis title</param>
+            <param name="left">Left bound in pixels</param>
+            <param name="top">Top bound in pixels</param>
+            <param name="width">Chart width in pixels</param>
+            <param name="height">Chart height in pixels</param>
+            <returns>Chart object</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.Utility.ExcelUtil">
+            <summary>
+            Helper class that provides functionalities to deal with Excel inter-activate
+            </summary>
+        </member>
+        <member name="F:SharpExcelAddinBase.Utility.ExcelUtil.MSG_CAP">
+            <summary>
+            Default caption for <see cref="T:System.Windows.MessageBox"/>
+            </summary>
+        </member>
+        <member name="F:SharpExcelAddinBase.Utility.ExcelUtil.App">
+            <summary>
+            Reference to the running Excel application
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.GetCallerAddress">
+            <summary>
+            Get the Excel range address of the caller when a method is raised 
+            </summary>
+            <returns>Caller address</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.GetCallerAddressShort">
+            <summary>
+            Get the Excel range address without the workbook name of the caller when a method is raised 
+            </summary>
+            <returns>Caller address</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.WorkbookName">
+            <summary>
+            Get the name of the current workbook in Excel
+            </summary>
+            <returns>Workbook name</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.SheetName">
+            <summary>
+            Get the name of the current worksheet in Excel
+            </summary>
+            <returns>Worksheet name</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object,System.String)">
+            <summary>
+            Cast an object from Excel into C# format
+            <para>- value type will stays the same                                                            </para>
+            <para>- array will be 2D array of object                                                          </para>
+            <para>- valid ID of <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/>                                                </para>
+            <para>- <see cref="T:ExcelDna.Integration.ExcelMissing"/> and <see cref="T:ExcelDna.Integration.ExcelEmpty"/> will become null                  </para>
+            <para>- <see cref="T:ExcelDna.Integration.ExcelReference"/> will stays the same                                          </para>
+             </summary>
+            <param name="value">Excel value</param>
+            <param name="book">Workbook name, current workbook if blank</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToExcelFormat(System.Object)">
+            <summary>
+            Cast an object from C# into Excel format
+            <para>- value type will stays the same                                                           </para>
+            <para>- <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> will outputs its ID                                       </para>
+            <para>- <see cref="T:Microsoft.Office.Interop.Excel.Range"/> will outputs its address                                             </para>
+            <para>- other types will use <see cref="M:System.Object.ToString"/>                                     </para>
+            </summary>
+            <param name="value">C# value</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToExcelString(System.Object)">
+            <summary>
+            Cast an object from C# into string representation
+            <para>- value type will stays the same                                                           </para>
+            <para>- <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> will outputs its ID                                       </para>
+            <para>- Enumerables and 2D array will output string representation of their elements             </para>
+            <para>- <see cref="T:Microsoft.Office.Interop.Excel.Range"/> will outputs its address                                             </para>
+            <para>- other types will use <see cref="M:System.Object.ToString"/>                                     </para>
+            </summary>
+            <param name="value">C# value</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object[0:,0:],System.String)">
+            <summary>
+            Cast a 2D array of Excel objects into C# format using <see cref="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object,System.String)"/> element-wise
+            </summary>
+            <param name="values">Excel values</param>
+            <param name="book">Workbook name, current workbook if blank</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToExcelFormat(System.Object[0:,0:])">
+            <summary>
+            Cast a 2D array of C# objects into Excel format using <see cref="M:SharpExcelAddinBase.Utility.ExcelUtil.ToExcelFormat(System.Object)"/> element-wise
+            </summary>
+            <param name="values">C# objects</param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.Utility.WorksheetHelper">
+            <summary>
+            Helper class that provides functionalities for <see cref="T:Microsoft.Office.Interop.Excel.Worksheet"/> and <see cref="T:Microsoft.Office.Interop.Excel.Range"/>
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.WorkSheetExist(System.String)">
+            <summary>
+            Check if a worksheet exist in current Excel workbook
+            </summary>
+            <param name="sheetName">Worksheet name</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.GetCurrentWorkSheetName">
+            <summary>
+            Get the current activate worksheet name in Excel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AddWorkSheet(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Add a worksheet in the current Excel workbook
+            </summary>
+            <param name="sheetName">Worksheet name</param>
+            <param name="createAfter">Insert new worksheet after or before the current worksheet</param>
+            <param name="overlap">If worksheet exists, delete the current one and add a new one</param>
+            <returns>New worksheet</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.FindWorkSheet(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Find an existing worksheet in the current Excel workbook
+            </summary>
+            <param name="sheetName">Worksheet name</param>
+            <param name="create">If worksheet doesn't exist, create a new one</param>
+            <param name="createAfter">Insert new worksheet after or before the current worksheet</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.DeleteWorkSheet(System.String)">
+            <summary>
+            Delete a worksheet from the current Excel workbook
+            </summary>
+            <param name="sheetName">Worksheet name</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AddContent``1(Microsoft.Office.Interop.Excel.Worksheet,``0[0:,0:],System.UInt32,System.UInt32)">
+            <summary>
+            Add content into a range in a worksheet in the current Excel workbook
+            </summary>
+            <typeparam name="T">Type of content element</typeparam>
+            <param name="sheet">Worksheet</param>
+            <param name="content">Contents to be added</param>
+            <param name="row">Row index of the topmost cell, starting from 1</param>
+            <param name="column">Column index of the leftmost cell, starting from 1</param>
+            <returns>Range object where content are located</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AddContent``1(Microsoft.Office.Interop.Excel.Worksheet,``0[],System.Boolean,System.UInt32,System.UInt32)">
+            <summary>
+            Add content into a range in a worksheet in the current Excel workbook
+            </summary>
+            <typeparam name="T">Type of content element</typeparam>
+            <param name="sheet">Worksheet</param>
+            <param name="content">Contents to be added</param>
+            <param name="isRow">Content is a row or a column</param>
+            <param name="row">Row index of the topmost cell, starting from 1</param>
+            <param name="column">Column index of the leftmost cell, starting from 1</param>
+            <returns>Range object where content are located</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AddContent``1(Microsoft.Office.Interop.Excel.Worksheet,``0,System.UInt32,System.UInt32)">
+            <summary>
+            Add content into a range in a worksheet in the current Excel workbook
+            </summary>
+            <typeparam name="T">Type of content element</typeparam>
+            <param name="sheet">Worksheet</param>
+            <param name="value">Content to be added</param>
+            <param name="row">Row index of the topmost cell, starting from 1</param>
+            <param name="column">Column index of the leftmost cell, starting from 1</param>
+            <returns>Range object where content are located</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AutoFitBoth(Microsoft.Office.Interop.Excel.Range)">
+            <summary>
+            Adjust the width and height of a range to fit its content in Excel
+            </summary>
+            <param name="range">Range to be adjusted</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AllLine(Microsoft.Office.Interop.Excel.Range)">
+            <summary>
+            Draw all boarders of each cell within a range in Excel
+            </summary>
+            <param name="range">Range to be adjusted</param>
+        </member>
+        <member name="T:SharpExcelAddinBase.Wpf.CacheViewWindow">
+            <summary>
+            Window1.xaml 的交互逻辑
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Wpf.CacheViewWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.Properties.Resources.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

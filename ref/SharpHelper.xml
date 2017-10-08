@@ -1,0 +1,1286 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpHelper</name>
+    </assembly>
+    <members>
+        <member name="T:SharpHelper.Object.SharpCache">
+            <summary>
+            A cache object that holds a bunch of <see cref="T:SharpHelper.Object.SharpObject"/>
+            </summary>
+        </member>
+        <member name="F:SharpHelper.Object.SharpCache.Default">
+            <summary>
+            A singleton instance for the default cache object
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Object.SharpCache.MemberList">
+            <summary>
+            Get a binding ready list of members 
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.GetMember(System.String)">
+            <summary>
+            Get a member in the cache by name
+            </summary>
+            <param name="name">Member name</param>
+            <returns>Member or null</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.AddMember(System.String,SharpHelper.Object.SharpObject)">
+            <summary>
+            Add a member into the cache, will not overlap if the name exists in the cache
+            </summary>
+            <param name="name">Member name</param>
+            <param name="obj">Object</param>
+            <returns>True if operation finished successfully</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.AddOrOverlap(System.String,SharpHelper.Object.SharpObject)">
+            <summary>
+            Add a member into the cache, will overlap if the name exists in the cache
+            </summary>
+            <param name="name">Member name</param>
+            <param name="obj">Object</param>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.RemoveMember(System.String)">
+            <summary>
+            Remove a member into the cache by name
+            </summary>
+            <param name="name">Member name</param>
+            <returns>True if operation finished successfully</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.GetMemberProperty(System.String,System.String)">
+            <summary>
+            Get a property of a member
+            </summary>
+            <param name="objName">Member name</param>
+            <param name="propName">Property name</param>
+            <returns>Property value of null</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.SetMemberProperty(System.String,System.String,System.Object)">
+            <summary>
+            Set a property of a member
+            </summary>
+            <param name="objName">Member name</param>
+            <param name="propName">Property name</param>
+            <param name="value">New property value</param>
+            <returns>True if operation finished successfully</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCache.InvokeMember(System.String,System.String,System.Object[])">
+            <summary>
+            Invoke a method from a member by name, if multiple overloads exist, 
+            the first will be called. <seealso cref="M:SharpHelper.Object.SharpObject.Invoke(System.String,System.Object[])"/>
+            </summary>
+            <param name="objName">Member name</param>
+            <param name="funcName">Method name</param>
+            <param name="paras">Array of parameters</param>
+            <returns>Method result or null</returns>
+        </member>
+        <member name="T:SharpHelper.Object.SharpCacheDict">
+            <summary>
+            A singleton object that holds many <see cref="T:SharpHelper.Object.SharpCache"/>
+            </summary>
+        </member>
+        <member name="F:SharpHelper.Object.SharpCacheDict.DEFAULT_CACHE">
+            <summary>
+            Name of the default <see cref="T:SharpHelper.Object.SharpCache"/> in the <see cref="T:SharpHelper.Object.SharpCacheDict"/>
+            </summary>
+        </member>
+        <member name="F:SharpHelper.Object.SharpCacheDict.Dict">
+            <summary>
+            A dictionary maps cache names to <see cref="T:SharpHelper.Object.SharpCache"/> objects
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCacheDict.GetCache(System.String)">
+            <summary>
+            Safely get a <see cref="T:SharpHelper.Object.SharpCache"/> in the dict by name
+            </summary>
+            <param name="cacheId">Cache name</param>
+            <returns>Cache or null</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpCacheDict.GetMember(System.String,System.String)">
+            <summary>
+            Get a <see cref="T:SharpHelper.Object.SharpObject"/> member in a cache in this dictionary
+            </summary>
+            <param name="name">Member name</param>
+            <param name="cacheId">Cache name</param>
+            <returns>Member or null</returns>
+        </member>
+        <member name="T:SharpHelper.Object.SharpObject">
+            <summary>
+            Base object type for <see cref="T:SharpHelper.Object.SharpObject"/> based object system. 
+            </summary>
+        </member>
+        <member name="E:SharpHelper.Object.SharpObject.PropertyChanged">
+            <summary>
+            Notify when property changes
+            </summary>
+        </member>
+        <member name="F:SharpHelper.Object.SharpObject.IsListen">
+            <summary>
+            Indicate that this <see cref="T:SharpHelper.Object.SharpObject"/> is listening for the <see cref="E:SharpHelper.Object.SharpObject.PropertyChanged"/> event.
+            </summary>
+        </member>
+        <member name="F:SharpHelper.Object.SharpObject.Properties">
+            <summary>
+            A dictionary that maps all properties this <see cref="T:SharpHelper.Object.SharpObject"/> has to their name in upper case.
+            </summary>
+        </member>
+        <member name="F:SharpHelper.Object.SharpObject.Methods">
+            <summary>
+            A dictionary that maps all properties this <see cref="T:SharpHelper.Object.SharpObject"/> has to their name in upper case.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.OnPropertyChanged(System.String)">
+            <summary>
+            Invoke <see cref="E:SharpHelper.Object.SharpObject.PropertyChanged"/> event.
+            </summary>
+            <param name="propertyName">Property that invokes the event</param>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.#ctor">
+            <summary>
+            Initiate a new instance of <see cref="T:SharpHelper.Object.SharpObject"/>
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.Get(System.String)">
+            <summary>
+            Get the value of a property of this <see cref="T:SharpHelper.Object.SharpObject"/>
+            </summary>
+            <param name="property">Property Name</param>
+            <returns>Property Value as type of <see cref="T:System.Object"/></returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.Set(System.String,System.Object)">
+            <summary>
+            Set the value of a property of this <see cref="T:SharpHelper.Object.SharpObject"/>
+            </summary>
+            <param name="property">Property Name</param>
+            <param name="value">New Value</param>
+            <returns>Return <code>true</code> when success</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.Getter(System.String)">
+            <summary>
+            Create a getter method of a property of this <see cref="T:SharpHelper.Object.SharpObject"/>
+            </summary>
+            <param name="property">Property Name</param>
+            <returns>A getter method</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.Setter(System.String)">
+            <summary>
+            Create a setter method of a property of this <see cref="T:SharpHelper.Object.SharpObject"/>
+            </summary>
+            <param name="property">Property Name</param>
+            <returns>A setter method</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.Invoke(System.String,System.Object[])">
+            <summary>
+            Invoke a method of this <see cref="T:SharpHelper.Object.SharpObject"/> by name. If multiple overloads exist, the first one will be used
+            </summary>
+            <param name="funcName">Method Name</param>
+            <param name="paras">An array of parameters in the order of the original function</param>
+            <returns>Method result</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.InvokeByDict(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Invoke a method of this <see cref="T:SharpHelper.Object.SharpObject"/> by name. If multiple overloads exist, 
+            the one with the most match in parameters will be used
+            </summary>
+            <param name="funcName">Method Name</param>
+            <param name="paraDict">A dictionary that maps name of parameters to parameter values</param>
+            <returns>Method result</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.ConstructByDict(System.Type,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Create a new instance by type. If multiple constructors exist, 
+            the one with the most match in parameters will be used
+            </summary>
+            <param name="type">Type</param>
+            <param name="paraDict">A dictionary that maps name of parameters to parameter values</param>
+            <returns>A new instance</returns>
+        </member>
+        <member name="M:SharpHelper.Object.SharpObject.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:SharpHelper.Simulation.BiNormalDist">
+            <summary>
+            Helper class for 2D Normal Distribution
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.BiNormalDist.BiNormDist(System.Double,System.Double,System.Double)">
+            <summary>
+            CDF of a standard 2D Normal Distribution
+            </summary>
+            <param name="a">FIrst dimension position</param>
+            <param name="b">Second dimension position</param>
+            <param name="rho">Correlation of two dimensions</param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpHelper.Simulation.LinearAlgebraHelper">
+            <summary>
+            Helper class that provides extension methods for linear algebra.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.LinearAlgebraHelper.EquationsSolver(System.Double[0:,0:],System.Double[])">
+            <summary>
+            Solve a linear equation system in the form of <code>Ax = b</code>
+            </summary>
+            <param name="a">2D array of coefficients</param>
+            <param name="b">Array of constant terms</param>
+            <returns>2D array of result</returns>
+        </member>
+        <member name="T:SharpHelper.Simulation.LinearInterpolation">
+            <summary>
+            Helper class that provides functionalities for linear interpolation
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.LinearInterpolation.InLinearFit(System.Double[],System.Double[],System.Double)">
+            <summary>
+            Linear interpolate new y for new x
+            </summary>
+            <param name="xs">Sorted array of xs</param>
+            <param name="ys">Sorted array of ys</param>
+            <param name="newX">X value to be interpolated</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.LinearInterpolation.InLinearSeq(System.Double,System.Double,System.Int32)">
+            <summary>
+            Linear interpolate between two ends
+            </summary>
+            <param name="lower">Lower bound</param>
+            <param name="upper">Upper bound</param>
+            <param name="count">Number of points</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.LinearInterpolation.InLinearExpand(System.Double[],System.Double[],System.Int32)">
+            <summary>
+            Linear interpolate inside an array
+            </summary>
+            <param name="xs">Sorted array of xs</param>
+            <param name="ys">Sorted array of ys</param>
+            <param name="count">Number of points</param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpHelper.Simulation.Matrix">
+            <summary>
+            Class to represent a matrix
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Equals(SharpHelper.Simulation.Matrix)">
+            <summary>
+            Check this <see cref="T:SharpHelper.Simulation.Matrix"/> is element-wise equal to another matrix
+            </summary>
+            <param name="other">Matrix</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.#ctor(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.#ctor(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.#ctor(System.Double[0:,0:])">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.op_Addition(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
+            <summary>
+            Sum two matrices element-wise
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.op_Subtraction(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
+            <summary>
+            A matrix minus another matrix element-wise
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.op_Multiply(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
+            <summary>
+            Matrix multiplication
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.op_Division(System.Double,SharpHelper.Simulation.Matrix)">
+            <summary>
+            A double divides by a matrix 
+            </summary>
+            <param name="i">Scale</param>
+            <param name="matrix">Matrix</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.op_Equality(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
+            <summary>
+            Check two <see cref="T:SharpHelper.Simulation.Matrix"/> are element-wise equal
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.op_Inequality(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
+            <summary>
+            Check two <see cref="T:SharpHelper.Simulation.Matrix"/> are not element-wise equal
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Display">
+            <summary>
+            Display the matrix on screen
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Display(System.String)">
+            <summary>
+            Display the matrix on screen
+            </summary>
+            <param name="format">Element format</param>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Inverse">
+            <summary>
+            Inverse Matrix
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Transpose">
+            <summary>
+            Transpose Matrix
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Zeros(System.Int32)">
+            <summary>
+            Get a matrix with all zeros
+            </summary>
+            <param name="size">Row and column count</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Zeros(System.Int32,System.Int32)">
+            <summary>
+            Get a matrix with all zeros
+            </summary>
+            <param name="rows">Row count</param>
+            <param name="cols">Column count</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.LinearSolve(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
+            <summary>
+            Solve a linear equation system
+            </summary>
+            <param name="cof">Coefficients</param>
+            <param name="con">Constants</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Det">
+            <summary>
+            Determinant of the matrix
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SharpHelper.Simulation.Matrix.IsSquare">
+            <summary>
+            If this <see cref="T:SharpHelper.Simulation.Matrix"/> is a square matrix
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.Matrix.IsSingular">
+            <summary>
+            If this <see cref="T:SharpHelper.Simulation.Matrix"/> is a singular
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.Matrix.Rows">
+            <summary>
+            Row count
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.Matrix.Columns">
+            <summary>
+            Column count
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Inverse(System.Double[0:,0:])">
+            <summary>
+            Inverse the Matrix
+            </summary>
+            <param name="mat">The Matrix to be Inversed</param>
+            <returns>The Inversed Matrix</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Determinant(System.Double[0:,0:])">
+            <summary>
+            Calculate the Determinant
+            </summary>
+            <param name="mat">The Matrix used to calculate</param>
+            <returns>The Determinant</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.ScaleBy(System.Double,System.Double[0:,0:])">
+            <summary>
+            Scale the Matrix by a specified ratio
+            </summary>
+            <param name="scalar">The Ratio for the Scale</param>
+            <param name="mat">The Matrix which will be scaled</param>
+            <returns>A new Matrix which is scaled with a specified ratio</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.UnitMatrix(System.Int32)">
+            <summary>
+            To get a unit matrix
+            </summary>
+            <param name="dimension">Dimension</param>
+            <returns>The unit double array</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.RowDiv(System.Double[0:,0:],System.Int32,System.Double)">
+            <summary>
+            Scale a specified Row
+            </summary>
+            <param name="mat">The Matrix to be scaled</param>
+            <param name="row">The Specified Row</param>
+            <param name="scaleRatio">The Scale Ratio</param>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.RowSub(System.Double[0:,0:],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Subtract a specified Row from another Row
+            </summary>
+            <param name="mat">The Matrix to be subtract</param>
+            <param name="row1">The Row Index to be subtracted</param>
+            <param name="row2">The Row Index to subtract</param>
+            <param name="scaleRatio">Scale Ratio</param>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.ColumnSub(System.Double[0:,0:],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Subtract a specified Column from another Column
+            </summary>
+            <param name="mat">The Matrix to be subtracted</param>
+            <param name="column1">The Column Index to be subtracted</param>
+            <param name="column2">The Column Index to Subtract</param>
+            <param name="scaleRatio">Scale Ratio</param>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.InterRow(System.Double[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Exchange a specified row's value
+            </summary>
+            <param name="mat">The Matrix to be exchanged</param>
+            <param name="row1">Row index</param>
+            <param name="row2">Row index</param>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.FilterMatrix(System.Double[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            To Filter the Matrix
+            </summary>
+            <param name="mat">The Matrix to be Filtered</param>
+            <param name="row">A specified Row</param>
+            <param name="column">A specified Column</param>
+            <returns>The Filtered Matrix</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.Matrix.Transpose(System.Double[0:,0:])">
+            <summary>
+            Transpose Matrix
+            </summary>
+            <param name="mat">The Matrix to be Transposed</param>
+            <returns>The Transposed Matrix</returns>
+        </member>
+        <member name="P:SharpHelper.Simulation.Matrix.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or Sets the specified value of the Matrix
+            </summary>
+            <param name="i">The row position in the Matrix</param>
+            <param name="j">The Column position in the Matrix</param>
+            <returns>Double, The specified value of the Matrix</returns>
+        </member>
+        <member name="P:SharpHelper.Simulation.Matrix.Data">
+            <summary>
+            Gets the Matrix
+            </summary>
+        </member>
+        <member name="T:SharpHelper.Simulation.NormalDist">
+            <summary>
+            Helper class for Normal Distribution
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.NormalDist.NormDist(System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Work as the same as Excel function NORMDIST(...)
+            </summary>
+            <param name="x">Value of input</param>
+            <param name="mean">Mean of the Normal Distribution</param>
+            <param name="std">Standard deviation for the Normal Distribution</param>
+            <param name="cumulative">Return CDF or PDF</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.NormalDist.Phi(System.Double)">
+            <summary>
+            Cumulative normal distribution for standard normal distribution
+            </summary>
+            <param name="z">Position</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.NormalDist.Phi(System.Double,System.Double,System.Double)">
+            <summary>
+            Cumulative normal distribution with mean mu and std deviation sigma
+            </summary>
+            <param name="z">Position</param>
+            <param name="mu">Mean</param>
+            <param name="sigma">Standard deviation</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.NormalDist.NormSample(System.Double,System.Double)">
+            <summary>
+            Generate samples from normal distribution
+            </summary>
+            <param name="mu">Mean of the normal distribution</param>
+            <param name="sigma">Standard deviation of the normal distribution</param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpHelper.Simulation.NumericCalculus">
+            <summary>
+            Helper class that provides functionalities to numeric calculus
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrderWithEnds(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use two side numeric derivatives in the middle and single side in both ends
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrder(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use two side numeric derivatives in the middle only
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n - 2</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrderPo(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use positive side numeric derivatives until the last term
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n - 1</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrderNe(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use negative side numeric derivatives from the second term
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n - 1</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.NumericCalculus.NuDeltaRate(System.Double[])">
+            <summary>
+            Get the change rate of xs starting from the second term
+            </summary>
+            <param name="xs">Variable with length n</param>
+            <returns>A double array with length n - 1</returns>
+        </member>
+        <member name="T:SharpHelper.Simulation.RandomHelper">
+            <summary>
+            Helper class that provides extension methods for random generating.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.RandomHelper.RndItem``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Get a random item in a enumerable of elements
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="ie">Elements</param>
+            <returns>An random element</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.RandomHelper.RndItems``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Boolean)">
+            <summary>
+            Get a number of random items in a enumerable of elements
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="ie">Elements</param>
+            <param name="num">Number of elements to be selected</param>
+            <param name="canRepeat">If elements can repeat in the results</param>
+            <returns>Random elements</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.RandomHelper.RndInts(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get a number of random <see cref="T:System.Int32"/> in a range from 0 to a maximum
+            </summary>
+            <param name="num">Number of integers</param>
+            <param name="max">Maximum value</param>
+            <param name="canRepeat">If integers can repeat in the results</param>
+            <returns>Random integers</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.RandomHelper.RndBools(System.Int32)">
+            <summary>
+            Get a number of random <see cref="T:System.Boolean"/>
+            </summary>
+            <param name="num">Number of bools</param>
+            <returns>Random bools</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.RandomHelper.NextBool(System.Random)">
+            <summary>
+            Generate a random <see cref="T:System.Boolean"/>
+            </summary>
+            <param name="r">Random instance</param>
+            <returns>Next random bool</returns>
+        </member>
+        <member name="T:SharpHelper.Util.ArrayHelper">
+            <summary>
+            Helper class that provides extension methods for 1D and 2D arrays.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Reval``1(System.Object[0:,0:],System.Func{System.Object,``0})">
+            <summary>
+            <para>Convert a 2D array into an 1D array. If <paramref name="array"/> is a row array then 
+            this function will return this row, otherwise will return the first column. </para>
+            <para>Each element will be convert to type of <typeparamref name="T"/> by <paramref name="func"/>.</para>
+            </summary>
+            <typeparam name="T">Type of element</typeparam>
+            <param name="array">2D array</param>
+            <param name="func">Convert function that apply to every element</param>
+            <returns>An 1D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Cast``1(System.Object[0:,0:],System.Func{System.Object,``0})">
+            <summary>
+            Cast each element in an 2D array into <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">Type casting to</typeparam>
+            <param name="array">2D array</param>
+            <param name="func">Casting function</param>
+            <returns>A 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Map``2(``0[0:,0:],System.Func{``0,``1})">
+            <summary>
+            Apply a function to each element in an 2D array
+            </summary>
+            <typeparam name="TFrom">Element type</typeparam>
+            <typeparam name="TTo">Function output type</typeparam>
+            <param name="array">2D array</param>
+            <param name="func">Casting function</param>
+            <returns>A 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Map``2(``0[0:,0:],System.Func{``0,System.Int32,System.Int32,``1})">
+            <summary>
+            Apply a function to each element in an 2D array
+            </summary>
+            <typeparam name="TFrom">Element type</typeparam>
+            <typeparam name="TTo">Function output type</typeparam>
+            <param name="array">2D array</param>
+            <param name="func">Casting function with the element and the row and the column of the element</param>
+            <returns>A 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Row``1(``0[0:,0:],System.Int32)">
+            <summary>
+            Get a row in a 2D array
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="array">A 2D array</param>
+            <param name="num">Row number, if negative, count row number back from upper bound</param>
+            <returns>An 1D Array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Column``1(``0[0:,0:],System.Int32)">
+            <summary>
+            Get a column in a 2D array
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="array">A 2D array</param>
+            <param name="num">Column number, if negative, count column number back from upper bound</param>
+            <returns>An 1D Array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.SetRow``1(``0[0:,0:],System.Int32,``0[],``0)">
+            <summary>
+            Set a row in a 2D array
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="array">A 2D array to be modified</param>
+            <param name="num">Row number, if negative, count row number back from upper bound</param>
+            <param name="value">New row value</param>
+            <param name="def">Default value if <paramref name="value"/> is not long enough</param>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.SetColumn``1(``0[0:,0:],System.Int32,``0[],``0)">
+            <summary>
+            Set a column in a 2D array
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="array">A 2D array to be modified</param>
+            <param name="num">Column number, if negative, count column number back from upper bound</param>
+            <param name="value">New column value</param>
+            <param name="def">Default value if <paramref name="value"/> is not long enough</param>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Sum(System.Double[0:,0:])">
+            <summary>
+            Get the sum of all elements in a 2D array
+            </summary>
+            <param name="array">A 2D array</param>
+            <returns>The sum of all elements</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.FlattenByRow``1(``0[0:,0:])">
+            <summary>
+            Flatten a 2D array row by row
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="array">A 2D array</param>
+            <returns>An 1D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.FlattenByColumn``1(``0[0:,0:])">
+            <summary>
+            Flatten a 2D array column by column
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="array">A 2D array</param>
+            <returns>An 1D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Transpose``1(``0[0:,0:])">
+            <summary>
+            Flips a 2D array over its diagonal
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="array">A 2D array</param>
+            <returns>Transposed 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.MatrixToString``1(``0[0:,0:],System.Int32)">
+            <summary>
+            Get a string representation of a 2D array
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="array">A 2D array</param>
+            <param name="maxShowItem">Maximum elements for the string to present, 
+            if the size of <paramref name="array"/> is greater than that, will 
+            produce a shorter string representing type and size of the 2D array</param>
+            <returns>String representation</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.ToColumn(System.Object[])">
+            <summary>
+            Cast an 1D array into a column 2D array
+            </summary>
+            <param name="input">1D array</param>
+            <returns>Column 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.ToColumn(System.Double[])">
+            <summary>
+            Cast an 1D array into a column 2D array
+            </summary>
+            <param name="input">1D array</param>
+            <returns>Column 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.ToColumn``1(``0[])">
+            <summary>
+            Cast an 1D array into a column 2D array
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="input">1D array</param>
+            <returns>Column 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.NewArrays``1(System.Int32,System.Int32,``0)">
+            <summary>
+            Initialize a new array of array with size and default value
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="size1">Size of the first dimension</param>
+            <param name="size2">Size of the second dimension</param>
+            <param name="def">Default value</param>
+            <returns>Array of array with default element value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.To2DArray``1(``0[][],``0)">
+            <summary>
+            Cast an array of array into a 2D array
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="arrays">Array of array</param>
+            <param name="def">Default value when array with short length</param>
+            <returns>2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.ToArrays``1(``0[0:,0:])">
+            <summary>
+            Cast a 2D array into an array of array
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="array">2D array</param>
+            <returns>Array of array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.NewArray``1(System.Int32,``0)">
+            <summary>
+            Initialize a new array with size and default value
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="size">Size of the first dimension</param>
+            <param name="def">Default value</param>
+            <returns>Array with default element value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Repeat``1(``0,System.Int32)">
+            <summary>
+            Repeat an element several times
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="obj">Element value</param>
+            <param name="count">Times</param>
+            <returns>Array with several elements</returns>
+        </member>
+        <member name="T:SharpHelper.Util.DictionaryHelper">
+            <summary>
+            Helper class that provides extension methods for <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.DictionaryHelper.GetValue``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+            <summary>
+            Get value with a given key
+            </summary>
+            <typeparam name="TKey">Key type</typeparam>
+            <typeparam name="TValue">Value type</typeparam>
+            <param name="dict">Dictionary</param>
+            <param name="key">Key to be found</param>
+            <param name="def">Default value if the key is not in the dictionary</param>
+            <returns>Value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.DictionaryHelper.GetKey``2(System.Collections.Generic.Dictionary{``0,``1},``1)">
+            <summary>
+            Get first key that maps the given value
+            </summary>
+            <typeparam name="TKey">Key type</typeparam>
+            <typeparam name="TValue">Value type</typeparam>
+            <param name="dict">Dictionary</param>
+            <param name="value">Given value</param>
+            <returns>Key or default value of <typeparamref name="TKey"/> if key is not found</returns>
+        </member>
+        <member name="M:SharpHelper.Util.DictionaryHelper.Extract``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+            <summary>
+            Get value and remove the paid in the dictionary
+            </summary>
+            <typeparam name="TKey">Key type</typeparam>
+            <typeparam name="TValue">Value type</typeparam>
+            <param name="dict">Dictionary</param>
+            <param name="key">Key</param>
+            <param name="def">Default value if the key is not in the dictionary</param>
+            <returns>Value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.DictionaryHelper.To2DArray``2(System.Collections.Generic.Dictionary{``0,``1})">
+            <summary>
+            Cast a dictionary into a 2D array with the first column is keys and 
+            the second column is values
+            </summary>
+            <typeparam name="TKey">Key type</typeparam>
+            <typeparam name="TValue">Value type</typeparam>
+            <param name="dict">Dictionary</param>
+            <returns>2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.DictionaryHelper.ToDict(System.Object[0:,0:])">
+            <summary>
+            Cast a 2D array into a dictionary where the first column will be keys and the second columns will be values
+            </summary>
+            <param name="array">2D array</param>
+            <returns>Dictionary</returns>
+        </member>
+        <member name="M:SharpHelper.Util.DictionaryHelper.ToDict(System.Object[0:,0:],System.Func{System.Object,System.Object})">
+            <summary>
+            Cast a 2D array into a dictionary where the first column will be keys and the second columns will be values
+            </summary>
+            <param name="array">2D array</param>
+            <param name="func">Apply function to cast values</param>
+            <returns>Dictionary</returns>
+        </member>
+        <member name="M:SharpHelper.Util.DictionaryHelper.ToUpper(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Turn keys in a dictionary into all upper cases
+            </summary>
+            <param name="dict">Dictionary</param>
+            <returns>Dictionary with upper case keys</returns>
+        </member>
+        <member name="T:SharpHelper.Util.EnumerableHelper">
+            <summary>
+            Helper class that provides extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.Ascending``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Sort an <see cref="T:System.Collections.Generic.IEnumerable`1"/> in ascending order
+            </summary>
+            <typeparam name="T">Element type, must implements <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="list">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <returns>An <see cref="T:System.Linq.IOrderedEnumerable`1"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.Descending``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Sort an <see cref="T:System.Collections.Generic.IEnumerable`1"/> in descending order
+            </summary>
+            <typeparam name="T">Element type, must implements <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="list">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <returns>An <see cref="T:System.Linq.IOrderedEnumerable`1"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether an <see cref="T:System.Collections.Generic.IEnumerable`1"/> contains all elements in another <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="container">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="check">Elements to be checked</param>
+            <returns>True when <paramref name="container"/> contains all 
+            elements in <paramref name="check"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.UnorderEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check two <see cref="T:System.Collections.Generic.IEnumerable`1"/> have same elements, ignoring order
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie1">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="ie2">Another <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <returns>True when two <see cref="T:System.Collections.Generic.IEnumerable`1"/> have same elements</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.JoinStr``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Use <paramref name="separator"/> to connect an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements into a string
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="separator">A string to be used as separator</param>
+            <returns>A string contains all elements in <paramref name="ie"/>, 
+            <see cref="F:System.String.Empty" /> if <paramref name="ie"/> is empty</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.SubByIndex``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            Get a subset of an <see cref="T:System.Collections.Generic.IEnumerable`1"/> by the starting and ending index
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="start">Start index, if negative, start index represents index from tail</param>
+            <param name="end">End index, if negative, end index represents index from tail</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements in the subset</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.SubByLen``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            Get a subset of an <see cref="T:System.Collections.Generic.IEnumerable`1"/> by the index and count
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="start">Start index, if negative, start index represents index from tail</param>
+            <param name="num">Number of elements, if negative, return all elements after start index</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements in the subset</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.Slice``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a subset of an <see cref="T:System.Collections.Generic.IEnumerable`1"/> by the indexes
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="index">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of indexes</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements in the subset</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.ValueCounts``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Count occurrence of each elements in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <returns>A dictionary that maps value to their count</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.MaxItem``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Get the element with maximum value in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <typeparam name="TComp">Type of value to be compared, must implements <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="func">A function that convert element to value</param>
+            <returns>An element with maximum value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.MinItem``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Get the element with minimum value in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <typeparam name="TComp">Type of value to be compared, must implements <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="func">A function that convert element to value</param>
+            <returns>An element with minimum value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.Times``1(System.Int32,System.Func{``0})">
+            <summary>
+            Run a function several times
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="num">Number of running</param>
+            <param name="f">Function</param>
+            <returns>Function results</returns>
+        </member>
+        <member name="T:SharpHelper.Util.MathHelper">
+            <summary>
+            Helper class that provides extension methods for math calculations.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.Pow(System.Double,System.Double)">
+            <summary>
+            Return the power of a given number
+            </summary>
+            <param name="x">Base</param>
+            <param name="y">Exponent</param>
+            <returns><paramref name="x"/> to the power of <paramref name="y"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.Div(System.Double,System.Double)">
+            <summary>
+            Return the fraction of two numbers.
+            </summary>
+            <param name="d1">Numerator</param>
+            <param name="d2">Denominator</param>
+            <returns><paramref name="d1"/> divided by <paramref name="d2"/></returns>
+        </member>
+        <member name="F:SharpHelper.Util.MathHelper.TOL">
+            <summary>
+            Precision by default
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.Percentile(System.Double[],System.Double)">
+            <summary>
+            A number represents the percentile in a sequence.
+            </summary>
+            <param name="sequence">An array of double</param>
+            <param name="percentile">percentile</param>
+            <returns>Result</returns>
+        </member>
+        <member name="T:SharpHelper.Util.ParseHelper">
+            <summary>
+            Helper class that provides extension methods for parsing types.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.ParseHelper.To``1(System.Object)">
+            <summary>
+            Cast a object directly into type of <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">Type to be casted</typeparam>
+            <param name="obj">Object</param>
+            <returns><typeparamref name="T"/> typed object</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ParseHelper.IsDefault``1(``0)">
+            <summary>
+            Check <paramref name="value"/> is default value of type <typeparamref name="T"/> or not
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="value"><typeparamref name="T"/> instances</param>
+            <returns>True if <paramref name="value"/> is default value of type <typeparamref name="T"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.ParseHelper.ToDouble(System.Int32)">
+            <summary>
+            Cast an <see cref="T:System.Int32"/> into a <see cref="T:System.Double"/>
+            </summary>
+            <param name="num">Integer</param>
+            <returns>Double</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ParseHelper.ToEnumerable``1(System.Object)">
+            <summary>
+            Cast an <see cref="T:System.Object"/> into an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="o">Enumerable object</param>
+            <returns><see cref="T:System.Collections.Generic.IEnumerable`1"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.ParseHelper.ToStrings(System.Object)">
+            <summary>
+            Cast an <see cref="T:System.Object"/> into a enumerable of string using elements' ToString method
+            </summary>
+            <param name="o">Enumerable object</param>
+            <returns>Enumerable of string</returns>
+        </member>
+        <member name="T:SharpHelper.Util.ReflectionHelper">
+            <summary>
+            Helper class that provides extension methods for reflection.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.ReflectionHelper.GetPropertyInfo(System.Object,System.String,System.Boolean)">
+            <summary>
+            Get a property of an object by name
+            </summary>
+            <param name="o">Object</param>
+            <param name="property">Property name</param>
+            <param name="caseSensitive">Property is case sensitive or not</param>
+            <returns>Property of the object or null</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ReflectionHelper.HasAttribute``1(System.Reflection.MemberInfo)">
+            <summary>
+            Check if a <see cref="T:System.Reflection.MemberInfo"/> has an attribute of <typeparamref name="TAttribute"/>
+            </summary>
+            <typeparam name="TAttribute">Attribute Type</typeparam>
+            <param name="member">Member info</param>
+            <returns>True if <paramref name="member"/> has <typeparamref name="TAttribute"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.ReflectionHelper.FindChildClass(System.Type)">
+            <summary>
+            Find all child classes from <paramref name="parent"/>
+            </summary>
+            <param name="parent">Type of parent</param>
+            <returns>Sub class types</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ReflectionHelper.FindClasses">
+            <summary>
+            Find all class types in the current environment
+            </summary>
+            <returns>Class types</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ReflectionHelper.InvokeByDict(System.Reflection.MethodBase,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object)">
+            <summary>
+            Invoke a method by name and a dictionary with parameters. 
+            </summary>
+            <param name="func">Method</param>
+            <param name="paraDict">A dictionary that maps name of parameters to parameter values</param>
+            <param name="by">Target object of the method, if method is static method, then leave here to be null</param>
+            <returns>Method result</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ReflectionHelper.GetParaNames(System.Reflection.MethodBase)">
+            <summary>
+            Get parameter name list of a method
+            </summary>
+            <param name="func">Method</param>
+            <returns>A list of parameter names</returns>
+        </member>
+        <member name="T:SharpHelper.Util.StringHelper">
+            <summary>
+            Helper class that provides extension methods for <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.StringHelper.Count(System.String,System.Char)">
+            <summary>
+            Count the occurrence of a char in a string
+            </summary>
+            <param name="str">String</param>
+            <param name="ch">Char to be counted</param>
+            <returns>Occurrence</returns>
+        </member>
+        <member name="M:SharpHelper.Util.StringHelper.CutString(System.String,System.Int32,System.Int32)">
+            <summary>
+            Cut a string into three pieces by index
+            </summary>
+            <param name="full">String to be cut</param>
+            <param name="cutIndex">First split index</param>
+            <param name="cutLen">Split length</param>
+            <returns>An array of strings contains three pieces</returns>
+        </member>
+        <member name="T:SharpHelper.Util.TypeHelper">
+            <summary>
+            Helper class that provides extension methods for <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.IsImplement``1(System.Type)">
+            <summary>
+            Check if a type implements an interface
+            </summary>
+            <typeparam name="TInterface">Interface</typeparam>
+            <param name="t">Type</param>
+            <returns>True if this type implements <typeparamref name="TInterface"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.Get(System.Object,System.String,System.Boolean)">
+            <summary>
+            Get the value of a property of this object
+            </summary>
+            <param name="o">Object</param>
+            <param name="property">Property Name</param>
+            <param name="caseSensitive">Property is case sensitive or not</param>
+            <returns>Property Value as type of <see cref="T:System.Object"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.Set(System.Object,System.String,System.Object,System.Boolean)">
+            <summary>
+            Set the value of a property of this object
+            </summary>
+            <param name="o">Object</param>
+            <param name="property">Property Name</param>
+            <param name="value">New value</param>
+            <param name="caseSensitive">Property is case sensitive or not</param>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.Getter(System.Object,System.String,System.Boolean)">
+            <summary>
+            Create a getter method of a property of this object
+            </summary>
+            <param name="o">Object</param>
+            <param name="property">Property Name</param>
+            <param name="caseSensitive">Property is case sensitive or not</param>
+            <returns>A getter method</returns>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.Setter(System.Object,System.String,System.Boolean)">
+            <summary>
+            Create a setter method of a property of this object
+            </summary>
+            <param name="o">Object</param>
+            <param name="property">Property Name</param>
+            <param name="caseSensitive">Property is case sensitive or not</param>
+            <returns>A setter method</returns>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.AsFunc(System.Object,System.String,System.String,System.Boolean)">
+            <summary>
+            Trait an object as a function that get a property value when changing another property
+            </summary>
+            <param name="o">Object</param>
+            <param name="propIn">Property to be used as input</param>
+            <param name="propOut">Property to be used as output</param>
+            <param name="caseSensitive">Property is case sensitive or not</param>
+            <returns>A function that apply a value and return another</returns>
+        </member>
+        <member name="T:SharpHelper.Util.XmlSerializationHelper">
+            <summary>
+            Helper class that provides extension methods for XML serialization.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.ToXmlString(System.Object)">
+            <summary>
+            Get XML serialization string of an object
+            </summary>
+            <param name="objectToSerialize">Object</param>
+            <returns>XML serialization string</returns>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.ToXmlString(System.Object,System.Type)">
+            <summary>
+            Get XML serialization string of an object
+            </summary>
+            <param name="objectToSerialize">Object</param>
+            <param name="type">Type of the object</param>
+            <returns>XML serialization string</returns>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.ToXmlFile(System.Object,System.String)">
+            <summary>
+            Save XML serialization of an object into a file
+            </summary>
+            <param name="objectToSerialize">Object</param>
+            <param name="filePath">File path</param>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.ToXmlFile(System.Object,System.String,System.Type)">
+            <summary>
+            Save XML serialization of an object into a file
+            </summary>
+            <param name="objectToSerialize">Object</param>
+            <param name="filePath">File path</param>
+            <param name="type">Type of the object</param>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.FromXmlString``1(System.String)">
+            <summary>
+            De-serialize a <typeparamref name="T"/> object from a XML string
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="objectData">XML serialization string</param>
+            <returns>A <typeparamref name="T"/> object</returns>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.FromXmlString(System.String,System.Type)">
+            <summary>
+            De-serialize a <paramref name="type"/> object from a XML string
+            </summary>
+            <param name="objectData">XML serialization string</param>
+            <param name="type">Type</param>
+            <returns>A <paramref name="type"/> object</returns>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.FromXmlFile``1(System.String)">
+            <summary>
+            De-serialize a <typeparamref name="T"/> object from a XML file
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="filePath">File path</param>
+            <returns>A <typeparamref name="T"/> object</returns>
+        </member>
+        <member name="M:SharpHelper.Util.XmlSerializationHelper.FromXmlFile(System.String,System.Type)">
+            <summary>
+            De-serialize a <paramref name="type"/> object from a XML file
+            </summary>
+            <param name="filePath">File path</param>
+            <param name="type">Type</param>
+            <returns>A <paramref name="type"/> object</returns>
+        </member>
+    </members>
+</doc>
