@@ -2,14 +2,15 @@
 using SharpExcelAddinBase.TemplateFunction;
 using SharpHelper.Util;
 
-namespace SpendingPolicyAddin.Seo
-{
+namespace SpendingPolicyAddin.Seo {
 
-    [TemplatedSeo("Underlying")]
-    public class Stock : SharpExcelObject
-    {
-        public Stock(string name, double price, double mu, double sigma, double dividend) : base(name)
-        {
+    [TemplatedSeo("Underlying", Description = "Stock prompt")]
+    public class Stock : SharpExcelObject {
+        public Stock(string name,
+                     [ParaText("Current stock price"), DblRange(0)] double price,
+                     [ParaText("Mean return")] double mu,
+                     [ParaText("Volatility"), DblRange(0, 1)] double sigma,
+                     [ParaText("Dividend yield"), DblRange(0, 1)] double dividend) : base(name) {
             this.Price = price;
             this.Mu = mu;
             this.Sigma = sigma;
@@ -22,31 +23,41 @@ namespace SpendingPolicyAddin.Seo
         public double Dividend { get; }
     }
 
-    public class StockOption : SharpExcelObject
-    {
-        public StockOption(string name, double strike, double maturity, SharpExcelObject underlying) : base(name)
-        {
+    public enum OptionType {
+        Call,
+        Put
+    }
+
+    [TemplatedSeoMethodProvider("Derivatives")]
+    public class StockOption : SharpExcelObject {
+        public StockOption(string name, double strike, double maturity, SharpExcelObject underlying,
+                           OptionType optionType) : base(name) {
             this.Strike = strike;
             this.Maturity = maturity;
+            this.OptionType = optionType;
             this.Underlying = underlying.To<Stock>();
         }
 
         public double Strike { get; }
         public double Maturity { get; }
         public Stock Underlying { get; }
-    }
+        public OptionType OptionType { get; }
 
-    [TemplatedSeo("Derivatives"), TemplatedSeoMethodProvider("Derivatives")]
-    public class EuroCallOption : StockOption
-    {
-        public EuroCallOption(string name, double strike, double maturity, SharpExcelObject underlying) :
-            base(name, strike, maturity, underlying)
-        { }
-
-        [TemplatedSeoMethod]
-        public object CheckUnderlying()
-        {
+        [TemplatedSeoMethod(Description = "Show the underlying of a option")]
+        public object CheckUnderlying() {
             return this.Underlying;
         }
     }
+
+    [TemplatedSeo("Derivatives", Description = "European option")]
+    public class EuroStockOption : StockOption {
+        public EuroStockOption(string name,
+                               [ParaText("Strike price"), DblRange(0)] double strike,
+                               [ParaText("Time to maturity"), DblRange(0)] double maturity,
+                               [ParaText("Underlying"), SeoType(typeof(Stock))] SharpExcelObject underlying,
+                               [ParaText("Option type")] OptionType optionType) :
+            base(name, strike, maturity, underlying, optionType) { }
+    }
+
+   
 }

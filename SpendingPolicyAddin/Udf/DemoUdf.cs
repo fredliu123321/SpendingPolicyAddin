@@ -1,4 +1,4 @@
-﻿using ExcelDna.Integration;
+﻿using System;
 using SharpExcelAddinBase.ObjectSystem;
 using SharpExcelAddinBase.TemplateFunction;
 using SharpHelper.Util;
@@ -6,27 +6,32 @@ using SpendingPolicyAddin.Seo;
 using static System.Math;
 using static SharpHelper.Simulation.NormalDist;
 
-namespace SpendingPolicyAddin.Udf
-{
+namespace SpendingPolicyAddin.Udf {
     [TemplatedUdfProvider]
-    public static class BsmModel
-    {
-        [ExcelFunction, TemplatedUdf("BlackScholes")]
-        public static double EuroCallPricing(SharpExcelObject option, double r)
-        {
-            var call = option.To<EuroCallOption>();
-            var stock = call.Underlying;
+    public static class BsmModel {
+        [TemplatedUdf("BlackScholes", Description = "Calculate price by BSM")]
+        public static double EuroOptionPricing(
+            [ParaText("Option to be calculated"), SeoType(typeof(StockOption))] SharpExcelObject option,
+            [ParaText("Risk free rate to be used"), DblRange(-1, 1)] double r) {
+            var op = option.To<EuroStockOption>();
+            var stock = op.Underlying;
             var s = stock.Price;
             var q = stock.Dividend;
             var σ = stock.Sigma;
-            var k = call.Strike;
-            var T = call.Maturity;
+            var k = op.Strike;
+            var T = op.Maturity;
 
             var d1 = (Log(s / k) + T * (r - q + σ * σ / 2)) / (σ * Sqrt(T));
             var d2 = (Log(s / k) + T * (r - q - σ * σ / 2)) / (σ * Sqrt(T));
-            var n1 = NormDist(d1);
-            var n2 = NormDist(d2);
-            return Exp(-q * T) * s * n1 - Exp(-r * T) * k * n2;
+
+            switch (op.OptionType) {
+                case OptionType.Call:
+                    return Exp(-q * T) * s * NormDist(d1) - Exp(-r * T) * k * NormDist(d2);
+                case OptionType.Put:
+                    return -Exp(-q * T) * s * NormDist(-d1) + Exp(-r * T) * k * NormDist(-d2);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

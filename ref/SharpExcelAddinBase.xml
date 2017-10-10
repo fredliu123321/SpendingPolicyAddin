@@ -97,9 +97,9 @@
             <param name="book">"Workbook name, current workbook if blank"</param>
             <returns>Grid contains objects IDs, types, and initial cells</returns>
         </member>
-        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.ViewObjectProperty(System.String,System.String,System.String)">
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.GetObjectProperty(System.String,System.String,System.String)">
             <summary>
-            View a property of <see cref="T:SharpHelper.Object.SharpObject"/> by name. 
+            Get a property of <see cref="T:SharpHelper.Object.SharpObject"/> by name. 
             Please refer to <seealso cref="M:SharpHelper.Object.SharpObject.Get(System.String)"/>
             </summary>
             <param name="id">ID of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
@@ -326,11 +326,10 @@
             <param name="customGroups">Custom UI groups</param>
             <returns>XML string of Ribbon UI</returns>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
-            <param name="control"></param>
         </member>
         <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
@@ -356,17 +355,20 @@
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
-            <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
-            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubClearSelection">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
         </member>
         <member name="T:SharpExcelAddinBase.Ribbon.ISharpRibbon">
             <summary>
@@ -400,21 +402,23 @@
         </member>
         <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout"/>
             </summary>
-            <param name="control"></param>
         </member>
         <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin"/>
             </summary>
-            <param name="control"></param>
         </member>
         <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub"/>
             </summary>
-            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubClearSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubClearSelection"/>
+            </summary>
         </member>
         <member name="T:SharpExcelAddinBase.Simulation.SimulationSeoBase`1">
             <summary>
@@ -460,21 +464,6 @@
             Mark the class to be a provider of User Defined Function (UDF)
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdf">
-            <inheritdoc />
-            <summary>
-            Mark the public static method to be a User Defined Function (UDF)
-            </summary>
-        </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.#ctor(System.String)">
-            <inheritdoc/>
-            <param name="category">Sub-menu name in Ribbon UI</param>
-        </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.Category">
-            <summary>
-            Sub-menu name in Ribbon UI
-            </summary>
-        </member>
         <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeo">
             <inheritdoc />
             <summary>
@@ -488,6 +477,11 @@
         <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeo.Category">
             <summary>
             Sub-menu name in Ribbon UI
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeo.Description">
+            <summary>
+            Description shows in Excel pop-up
             </summary>
         </member>
         <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProvider">
@@ -505,19 +499,45 @@
             Sub-menu name in Ribbon UI
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethod">
-            <inheritdoc />
-            <summary>
-            Mark the public non-static method to be a Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> Method
-            </summary>
-        </member>
         <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSubProvider">
             <inheritdoc />
             <summary>
             Mark the class to be a provider of Template Subroutine
             </summary>
         </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdf">
+            <inheritdoc />
+            <summary>
+            Mark the public static method to be a User Defined Function (UDF)
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.#ctor(System.String)">
+            <inheritdoc/>
+            <param name="category">Sub-menu name in Ribbon UI</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.Category">
+            <summary>
+            Sub-menu name in Ribbon UI
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.Description">
+            <summary>
+            Description shows in Excel pop-up
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethod">
+            <inheritdoc />
+            <summary>
+            Mark the public non-static method to be a Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> Method
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethod.Description">
+            <summary>
+            Description shows in Excel pop-up
+            </summary>
+        </member>
         <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSub">
+            <inheritdoc />
             <summary>
             Mark this public static method to be a Template Subroutine
             </summary>
@@ -529,6 +549,83 @@
         <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSub.Category">
             <summary>
             Sub-menu name in Ribbon UI
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSub.Description">
+            <summary>
+            Description shows in Excel pop-up
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.DblRange">
+            <inheritdoc />
+            <summary>
+            Add boundaries to parameter in Template Excel Methods
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.DblRange.#ctor(System.Double,System.Double)">
+            <inheritdoc/>
+            <param name="lower">Lower bound</param>
+            <param name="upper">Upper bound</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.DblRange.Lower">
+            <summary>
+            Lower bound
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.DblRange.Upper">
+            <summary>
+            Upper bound
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.IntRange">
+            <inheritdoc />
+            <summary>
+            Add boundaries to parameter in Template Excel Methods
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.IntRange.#ctor(System.Int32,System.Int32)">
+            <inheritdoc/>
+            <param name="lower">Lower bound</param>
+            <param name="upper">Upper bound</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.IntRange.Lower">
+            <summary>
+            Lower bound
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.IntRange.Upper">
+            <summary>
+            Upper bound
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.ParaText">
+            <inheritdoc />
+            <summary>
+            Add description to parameter in Template Excel Methods
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.ParaText.#ctor(System.String)">
+            <inheritdoc/>
+            <param name="description">Description shows in Excel pop-up</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.ParaText.Description">
+            <summary>
+            Description shows in Excel pop-up
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.SeoType">
+            <inheritdoc />
+            <summary>
+            Add <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> type name to parameter in Template Excel Methods
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.SeoType.#ctor(System.Type)">
+            <inheritdoc/>
+            <param name="type"><see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> type name shows in Excel pop-up</param>
+        </member>
+        <member name="P:SharpExcelAddinBase.TemplateFunction.SeoType.Type">
+            <summary>
+            <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> type name shows in Excel pop-up
             </summary>
         </member>
         <member name="T:SharpExcelAddinBase.TemplateFunction.TemplateHelper">
@@ -733,9 +830,121 @@
             <param name="values">C# objects</param>
             <returns></returns>
         </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.View(System.Object)">
+            <summary>
+            View C# value in Excel
+            </summary>
+            <param name="csharpValue">C# value from formula</param>
+            <returns>Excel format value</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.Utility.RangeHelper">
+            <summary>
+            Helper class that provides functionalities for <see cref="T:Microsoft.Office.Interop.Excel.Range"/>
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AutoFitBoth(Microsoft.Office.Interop.Excel.Range)">
+            <summary>
+            Adjust the width and height of a range to fit its content in Excel
+            </summary>
+            <param name="range">Range to be adjusted</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AllLine(Microsoft.Office.Interop.Excel.Range)">
+            <summary>
+            Draw all boarders of each cell within a range in Excel
+            </summary>
+            <param name="range">Range to be adjusted</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Double,System.Double,System.String,System.String)">
+            <summary>
+            Add data validation to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="lower">Lower bound of decimal value</param>
+            <param name="upper">Upper bound of decimal value</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Add data validation to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="lower">Lower bound of decimal value</param>
+            <param name="upper">Upper bound of decimal value</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Double,System.Boolean,System.Boolean,System.String,System.String)">
+            <summary>
+            Add data validation to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="bound">Decimal boundary</param>
+            <param name="greater">Value in the range should be greater or less than the boundary</param>
+            <param name="equal">Value in the range can equal to the boundary</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Type,System.String,System.String)">
+            <summary>
+            Add data validation to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="enumType">Enum type to be selected from</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Collections.Generic.IEnumerable{System.String},System.String,System.String)">
+            <summary>
+            Add data validation to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="items">Items to be selected from</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddIntValidation(Microsoft.Office.Interop.Excel.Range,System.String,System.String)">
+            <summary>
+            Add integer type input validation to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDoubleValidation(Microsoft.Office.Interop.Excel.Range,System.String,System.String)">
+            <summary>
+            Add double type input validation to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddCellInformation(Microsoft.Office.Interop.Excel.Range,System.String,System.String)">
+            <summary>
+            Add cell information prompt to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddCellInformation(Microsoft.Office.Interop.Excel.Range,System.Type,System.String,System.String)">
+            <summary>
+            Add cell information prompt to a range in Excel
+            </summary>
+            <param name="range">Range to be validated</param>
+            <param name="type">Type that the value in the range should be</param>
+            <param name="msg">Message showed in the data validation prompt</param>
+            <param name="title">Title showed in the data validation prompt</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.ClearAll(Microsoft.Office.Interop.Excel.Range)">
+            <summary>
+            Clear every content or format in a range
+            </summary>
+            <param name="range">Range to be cleared</param>
+        </member>
         <member name="T:SharpExcelAddinBase.Utility.WorksheetHelper">
             <summary>
-            Helper class that provides functionalities for <see cref="T:Microsoft.Office.Interop.Excel.Worksheet"/> and <see cref="T:Microsoft.Office.Interop.Excel.Range"/>
+            Helper class that provides functionalities for <see cref="T:Microsoft.Office.Interop.Excel.Worksheet"/>
             </summary>
         </member>
         <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.WorkSheetExist(System.String)">
@@ -808,18 +1017,6 @@
             <param name="row">Row index of the topmost cell, starting from 1</param>
             <param name="column">Column index of the leftmost cell, starting from 1</param>
             <returns>Range object where content are located</returns>
-        </member>
-        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AutoFitBoth(Microsoft.Office.Interop.Excel.Range)">
-            <summary>
-            Adjust the width and height of a range to fit its content in Excel
-            </summary>
-            <param name="range">Range to be adjusted</param>
-        </member>
-        <member name="M:SharpExcelAddinBase.Utility.WorksheetHelper.AllLine(Microsoft.Office.Interop.Excel.Range)">
-            <summary>
-            Draw all boarders of each cell within a range in Excel
-            </summary>
-            <param name="range">Range to be adjusted</param>
         </member>
         <member name="T:SharpExcelAddinBase.Wpf.CacheViewWindow">
             <summary>

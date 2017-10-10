@@ -1006,6 +1006,20 @@
             <param name="f">Function</param>
             <returns>Function results</returns>
         </member>
+        <member name="T:SharpHelper.Util.FunctionHelper">
+            <summary>
+            Helper class that provides functionalities of running function in C#
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.FunctionHelper.Try``1(System.Func{``0},``0@)">
+            <summary>
+            Try to get a value from method
+            </summary>
+            <typeparam name="T">Value type</typeparam>
+            <param name="getter">Getter function</param>
+            <param name="result">Value returned</param>
+            <returns>True if value is not null</returns>
+        </member>
         <member name="T:SharpHelper.Util.MathHelper">
             <summary>
             Helper class that provides extension methods for math calculations.
@@ -1160,6 +1174,26 @@
             <summary>
             Helper class that provides extension methods for <see cref="T:System.Type"/>.
             </summary>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.ParseEnum``1(System.String,System.Boolean,``0)">
+            <summary>
+            Cast a string into an <typeparamref name="TEnum"/> value
+            </summary>
+            <typeparam name="TEnum">Enum type to be parsed to</typeparam>
+            <param name="value">Value to be parsed</param>
+            <param name="ignoreCase">Ignore case in parsing</param>
+            <param name="def">Default value</param>
+            <returns>Enum value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.ParseEnum(System.Type,System.String,System.Boolean,System.Object)">
+            <summary>
+            Cast a string into an enum value
+            </summary>
+            <param name="enumType">Enum type to be parsed to</param>
+            <param name="value">Value to be parsed</param>
+            <param name="ignoreCase">Ignore case in parsing</param>
+            <param name="def">Default value</param>
+            <returns>Enum value</returns>
         </member>
         <member name="M:SharpHelper.Util.TypeHelper.IsImplement``1(System.Type)">
             <summary>
