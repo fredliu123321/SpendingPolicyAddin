@@ -17,6 +17,11 @@
         <member name="M:SharpHelper.Object.SharpCache.#ctor">
             <inheritdoc />
         </member>
+        <member name="M:SharpHelper.Object.SharpCache.Clear">
+            <summary>
+            Remove all members in the cache
+            </summary>
+        </member>
         <member name="P:SharpHelper.Object.SharpCache.MemberList">
             <summary>
             Get a binding ready list of members 

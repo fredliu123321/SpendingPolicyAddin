@@ -314,130 +314,150 @@
             <param name="onAction">Name of the method when click this button</param>
             <returns>XML Ribbon button</returns>
         </member>
-        <member name="T:SharpExcelAddinBase.Ribbon.SharpRibbonHelper">
+        <member name="T:SharpExcelAddinBase.Ribbon.SharpDefaultUi">
             <summary>
             Provide default implementation of custom Ribbon UI
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.GetUi(System.Collections.Generic.IEnumerable{System.Xml.XmlElement})">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.GetUi(System.Collections.Generic.IEnumerable{System.Xml.XmlElement})">
             <summary>
             Generate Ribbon UI with default Sharp Excel Add-in Base UI and custom UI
             </summary>
             <param name="customGroups">Custom UI groups</param>
             <returns>XML string of Ribbon UI</returns>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubRunSub">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
-            <summary>
-            Default Sharp Excel Add-in Base UI method
-            </summary>
-            <param name="control"></param>
-        </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubAbout">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubShowCacheWin">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubClearSelection">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubClearSelection">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFormatSelection">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubFormatSelection">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFitSelection">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubFitSelection">
             <summary>
             Default Sharp Excel Add-in Base UI method
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.Ribbon.ISharpRibbon">
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubAddObjSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubClearCache">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+        </member>
+        <member name="T:SharpExcelAddinBase.Ribbon.ISharpDefaultUi">
             <summary>
             Interface that make sure a custom Ribbon class can present the default Ribbon UI 
             defined by Sharp Excel Add-in Base
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertUdfTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertSubTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertSeoTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubInsertSeoMethodTemp(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubAbout(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubAbout"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubAbout"/>
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubShowCacheWin(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubShowCacheWin"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubShowCacheWin"/>
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubRunSub(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubRunSub"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubRunSub"/>
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubClearSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubClearSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubClearSelection"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubClearSelection"/>
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubFitSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubFitSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFitSelection"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubFitSelection"/>
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubFormatSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubFormatSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
             <summary>
-            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFormatSelection"/>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubFormatSelection"/>
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubAddObjSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubAddObjSelection(ExcelDna.Integration.CustomUI.IRibbonControl)"/>
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpDefaultUi.SubClearCache(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubClearCache"/>
             </summary>
         </member>
         <member name="T:SharpExcelAddinBase.Simulation.SimulationSeoBase`1">
@@ -470,7 +490,6 @@
             </summary>
             <param name="progressDisplay">Method to display progress</param>
             <param name="displayInt">Interval to update progress display</param>
-            <returns></returns>
         </member>
         <member name="M:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.GenerateSample">
             <summary>
@@ -702,6 +721,19 @@
             <param name="width">Chart width in pixels</param>
             <param name="height">Chart height in pixels</param>
             <returns>Chart object</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.Utility.ConfigHelper">
+            <summary>
+            Helper class that provides functionalities to configuration file
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.ConfigHelper.AddInPara(System.String,System.String)">
+            <summary>
+            Get Add-in level parameter from .xll.config file
+            </summary>
+            <param name="key">Key to be found</param>
+            <param name="def">Default value</param>
+            <returns>Add-in level parameter value</returns>
         </member>
         <member name="T:SharpExcelAddinBase.Utility.ExcelUtil">
             <summary>
