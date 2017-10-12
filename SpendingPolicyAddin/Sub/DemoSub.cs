@@ -11,8 +11,8 @@ namespace SpendingPolicyAddin.Sub {
             [ParaText("Independent variable")] Action<object> x,
             [ParaText("Dependent variable")] Func<double> y,
             [ParaText("Target value for y to reach")] double target,
-            [ParaText("Lower bound")] double lower = 0,
-            [ParaText("Upper bound")] double upper = 1) {
+            [ParaText("Lower bound"), DoubleRange] double lower = 0,
+            [ParaText("Upper bound"), DoubleRange] double upper = 1) {
             if (upper < lower) {
                 x("Error: upper bound must be larger than lower bound");
                 return;

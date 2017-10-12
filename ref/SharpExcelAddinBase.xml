@@ -370,6 +370,16 @@
             Default Sharp Excel Add-in Base UI method
             </summary>
         </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFormatSelection">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFitSelection">
+            <summary>
+            Default Sharp Excel Add-in Base UI method
+            </summary>
+        </member>
         <member name="T:SharpExcelAddinBase.Ribbon.ISharpRibbon">
             <summary>
             Interface that make sure a custom Ribbon class can present the default Ribbon UI 
@@ -420,6 +430,16 @@
             Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubClearSelection"/>
             </summary>
         </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubFitSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFitSelection"/>
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Ribbon.ISharpRibbon.SubFormatSelection(ExcelDna.Integration.CustomUI.IRibbonControl)">
+            <summary>
+            Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpRibbonHelper.SubFormatSelection"/>
+            </summary>
+        </member>
         <member name="T:SharpExcelAddinBase.Simulation.SimulationSeoBase`1">
             <summary>
             Base class for Monte Carlo simulation in Excel
@@ -458,174 +478,117 @@
             </summary>
             <returns>A sample</returns>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdfProvider">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdfProviderAttribute">
             <inheritdoc />
             <summary>
             Mark the class to be a provider of User Defined Function (UDF)
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeo">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoAttribute">
             <inheritdoc />
             <summary>
             Mark the class to be a provider of Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/>
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSeo.#ctor(System.String)">
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSeoAttribute.#ctor(System.String)">
             <inheritdoc/>
             <param name="category">Sub-menu name in Ribbon UI</param>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeo.Category">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoAttribute.Category">
             <summary>
             Sub-menu name in Ribbon UI
             </summary>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeo.Description">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoAttribute.Description">
             <summary>
             Description shows in Excel pop-up
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProvider">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProviderAttribute">
             <inheritdoc />
             <summary>
             Mark the class to be a provider of Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> Method
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProvider.#ctor(System.String)">
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProviderAttribute.#ctor(System.String)">
             <inheritdoc />
             <param name="category">Sub-menu name in Ribbon UI</param>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProvider.Category">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodProviderAttribute.Category">
             <summary>
             Sub-menu name in Ribbon UI
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSubProvider">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSubProviderAttribute">
             <inheritdoc />
             <summary>
             Mark the class to be a provider of Template Subroutine
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdf">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdfAttribute">
             <inheritdoc />
             <summary>
             Mark the public static method to be a User Defined Function (UDF)
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.#ctor(System.String)">
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedUdfAttribute.#ctor(System.String)">
             <inheritdoc/>
             <param name="category">Sub-menu name in Ribbon UI</param>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.Category">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdfAttribute.Category">
             <summary>
             Sub-menu name in Ribbon UI
             </summary>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdf.Description">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedUdfAttribute.Description">
             <summary>
             Description shows in Excel pop-up
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethod">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodAttribute">
             <inheritdoc />
             <summary>
             Mark the public non-static method to be a Template <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> Method
             </summary>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethod.Description">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSeoMethodAttribute.Description">
             <summary>
             Description shows in Excel pop-up
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSub">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedSubAttribute">
             <inheritdoc />
             <summary>
             Mark this public static method to be a Template Subroutine
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSub.#ctor(System.String)">
+        <member name="M:SharpExcelAddinBase.TemplateFunction.TemplatedSubAttribute.#ctor(System.String)">
             <inheritdoc/>
             <param name="category">Sub-menu name in Ribbon UI</param>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSub.Category">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSubAttribute.Category">
             <summary>
             Sub-menu name in Ribbon UI
             </summary>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSub.Description">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.TemplatedSubAttribute.Description">
             <summary>
             Description shows in Excel pop-up
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.DblRange">
-            <inheritdoc />
-            <summary>
-            Add boundaries to parameter in Template Excel Methods
-            </summary>
-        </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.DblRange.#ctor(System.Double,System.Double)">
-            <inheritdoc/>
-            <param name="lower">Lower bound</param>
-            <param name="upper">Upper bound</param>
-        </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.DblRange.Lower">
-            <summary>
-            Lower bound
-            </summary>
-        </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.DblRange.Upper">
-            <summary>
-            Upper bound
-            </summary>
-        </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.IntRange">
-            <inheritdoc />
-            <summary>
-            Add boundaries to parameter in Template Excel Methods
-            </summary>
-        </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.IntRange.#ctor(System.Int32,System.Int32)">
-            <inheritdoc/>
-            <param name="lower">Lower bound</param>
-            <param name="upper">Upper bound</param>
-        </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.IntRange.Lower">
-            <summary>
-            Lower bound
-            </summary>
-        </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.IntRange.Upper">
-            <summary>
-            Upper bound
-            </summary>
-        </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.ParaText">
+        <member name="T:SharpExcelAddinBase.TemplateFunction.ParaTextAttribute">
             <inheritdoc />
             <summary>
             Add description to parameter in Template Excel Methods
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.ParaText.#ctor(System.String)">
+        <member name="M:SharpExcelAddinBase.TemplateFunction.ParaTextAttribute.#ctor(System.String)">
             <inheritdoc/>
             <param name="description">Description shows in Excel pop-up</param>
         </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.ParaText.Description">
+        <member name="P:SharpExcelAddinBase.TemplateFunction.ParaTextAttribute.Description">
             <summary>
             Description shows in Excel pop-up
-            </summary>
-        </member>
-        <member name="T:SharpExcelAddinBase.TemplateFunction.SeoType">
-            <inheritdoc />
-            <summary>
-            Add <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> type name to parameter in Template Excel Methods
-            </summary>
-        </member>
-        <member name="M:SharpExcelAddinBase.TemplateFunction.SeoType.#ctor(System.Type)">
-            <inheritdoc/>
-            <param name="type"><see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> type name shows in Excel pop-up</param>
-        </member>
-        <member name="P:SharpExcelAddinBase.TemplateFunction.SeoType.Type">
-            <summary>
-            <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> type name shows in Excel pop-up
             </summary>
         </member>
         <member name="T:SharpExcelAddinBase.TemplateFunction.TemplateHelper">
@@ -837,6 +800,15 @@
             <param name="csharpValue">C# value from formula</param>
             <returns>Excel format value</returns>
         </member>
+        <member name="T:SharpExcelAddinBase.Utility.SharpExcelException">
+            <inheritdoc/>
+            <summary>
+            Exception that thrown by SharpExcelAddinBase internally
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.Utility.SharpExcelException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
         <member name="T:SharpExcelAddinBase.Utility.RangeHelper">
             <summary>
             Helper class that provides functionalities for <see cref="T:Microsoft.Office.Interop.Excel.Range"/>
@@ -885,7 +857,7 @@
             <param name="msg">Message showed in the data validation prompt</param>
             <param name="title">Title showed in the data validation prompt</param>
         </member>
-        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Type,System.String,System.String)">
+        <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Type,System.String,System.String,System.Collections.Generic.List{System.Object})">
             <summary>
             Add data validation to a range in Excel
             </summary>
@@ -893,6 +865,7 @@
             <param name="enumType">Enum type to be selected from</param>
             <param name="msg">Message showed in the data validation prompt</param>
             <param name="title">Title showed in the data validation prompt</param>
+            <param name="values">Valid enum values</param>
         </member>
         <member name="M:SharpExcelAddinBase.Utility.RangeHelper.AddDataValidation(Microsoft.Office.Interop.Excel.Range,System.Collections.Generic.IEnumerable{System.String},System.String,System.String)">
             <summary>

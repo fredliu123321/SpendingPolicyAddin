@@ -10,6 +10,8 @@ namespace SpendingPolicyAddin {
         public void SubShowCacheWin(IRibbonControl control) => SharpRibbonHelper.SubShowCacheWin();
         public void SubRunSub(IRibbonControl control) => SharpRibbonHelper.SubRunSub();
         public void SubClearSelection(IRibbonControl control) => SharpRibbonHelper.SubClearSelection();
+        public void SubFitSelection(IRibbonControl control) => SharpRibbonHelper.SubFitSelection();
+        public void SubFormatSelection(IRibbonControl control) => SharpRibbonHelper.SubFormatSelection();
         public void SubInsertUdfTemp(IRibbonControl control) => SharpRibbonHelper.SubInsertUdfTemp(control);
         public void SubInsertSubTemp(IRibbonControl control) => SharpRibbonHelper.SubInsertSubTemp(control);
         public void SubInsertSeoTemp(IRibbonControl control) => SharpRibbonHelper.SubInsertSeoTemp(control);

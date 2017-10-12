@@ -1020,6 +1020,38 @@
             <param name="result">Value returned</param>
             <returns>True if value is not null</returns>
         </member>
+        <member name="M:SharpHelper.Util.FunctionHelper.InvokeByDict(System.Reflection.MethodBase,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object)">
+            <summary>
+            Invoke a method by name and a dictionary with parameters. 
+            </summary>
+            <param name="func">Method</param>
+            <param name="paraDict">A dictionary that maps name of parameters to parameter values</param>
+            <param name="by">Target object of the method, if method is static method, then leave here to be null</param>
+            <returns>Method result</returns>
+        </member>
+        <member name="M:SharpHelper.Util.FunctionHelper.GetParaNames(System.Reflection.MethodBase)">
+            <summary>
+            Get parameter name list of a method
+            </summary>
+            <param name="func">Method</param>
+            <returns>A list of parameter names</returns>
+        </member>
+        <member name="T:SharpHelper.Util.IRange`1">
+            <summary>
+            A range-like value pair with lower and upper bound
+            </summary>
+            <typeparam name="T">Value type</typeparam>
+        </member>
+        <member name="P:SharpHelper.Util.IRange`1.Lower">
+            <summary>
+            Lower bound of the range
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Util.IRange`1.Upper">
+            <summary>
+            Upper bound of the range
+            </summary>
+        </member>
         <member name="T:SharpHelper.Util.MathHelper">
             <summary>
             Helper class that provides extension methods for math calculations.
@@ -1053,6 +1085,127 @@
             <param name="sequence">An array of double</param>
             <param name="percentile">percentile</param>
             <returns>Result</returns>
+        </member>
+        <member name="T:SharpHelper.Util.ParameterConstraintAttribute">
+            <inheritdoc />
+            <summary>
+            Attribute to add a constraint to a parameter
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.ParameterConstraintAttribute.#ctor(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.ParameterConstraintAttribute.InputType">
+            <summary>
+            Type of valid input value 
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.ParameterConstraintAttribute.Validation(System.Object)">
+            <summary>
+            Validate an input value
+            </summary>
+            <param name="value">Input value</param>
+            <returns>True if the input value is valid</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ParameterConstraintAttribute.Convention(System.Object)">
+            <summary>
+            Convent an input value into desired type
+            </summary>
+            <param name="value">Input value</param>
+            <returns>Convention result</returns>
+        </member>
+        <member name="T:SharpHelper.Util.IntRangeAttribute">
+            <inheritdoc cref="T:SharpHelper.Util.ParameterConstraintAttribute" />
+            <summary>
+            Integer input must be within a range
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.IntRangeAttribute.#ctor(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.IntRangeAttribute.Lower">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.IntRangeAttribute.Upper">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Util.IntRangeAttribute.Validation(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Util.IntRangeAttribute.Convention(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:SharpHelper.Util.UIntRangeAttribute">
+            <inheritdoc cref="T:SharpHelper.Util.ParameterConstraintAttribute" />
+            <summary>
+            Unsigned integer input must be within a range
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.UIntRangeAttribute.#ctor(System.UInt32,System.UInt32)">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.UIntRangeAttribute.Lower">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.UIntRangeAttribute.Upper">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Util.UIntRangeAttribute.Validation(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Util.UIntRangeAttribute.Convention(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:SharpHelper.Util.DoubleRangeAttribute">
+            <inheritdoc cref="T:SharpHelper.Util.ParameterConstraintAttribute" />
+            <summary>
+            Double input must be within a range
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.DoubleRangeAttribute.#ctor(System.Double,System.Double)">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.DoubleRangeAttribute.Lower">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.DoubleRangeAttribute.Upper">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Util.DoubleRangeAttribute.Validation(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Util.DoubleRangeAttribute.Convention(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:SharpHelper.Util.EnumRangeAttribute">
+            <inheritdoc/>
+            <summary>
+            Enum input must be within a range
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.EnumRangeAttribute.#ctor(System.Type,System.Boolean,System.Object[])">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpHelper.Util.EnumRangeAttribute.AcceptValues">
+            <summary>
+            Valid enum values, if empty, all possible values are accepted 
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Util.EnumRangeAttribute.AcceptType">
+            <summary>
+            Enum type to be parsed to
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Util.EnumRangeAttribute.IgnoreCase">
+            <summary>
+            Ignore case in parsing
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Util.EnumRangeAttribute.Validation(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.Util.EnumRangeAttribute.Convention(System.Object)">
+            <inheritdoc />
         </member>
         <member name="T:SharpHelper.Util.ParseHelper">
             <summary>
@@ -1132,22 +1285,6 @@
             </summary>
             <returns>Class types</returns>
         </member>
-        <member name="M:SharpHelper.Util.ReflectionHelper.InvokeByDict(System.Reflection.MethodBase,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object)">
-            <summary>
-            Invoke a method by name and a dictionary with parameters. 
-            </summary>
-            <param name="func">Method</param>
-            <param name="paraDict">A dictionary that maps name of parameters to parameter values</param>
-            <param name="by">Target object of the method, if method is static method, then leave here to be null</param>
-            <returns>Method result</returns>
-        </member>
-        <member name="M:SharpHelper.Util.ReflectionHelper.GetParaNames(System.Reflection.MethodBase)">
-            <summary>
-            Get parameter name list of a method
-            </summary>
-            <param name="func">Method</param>
-            <returns>A list of parameter names</returns>
-        </member>
         <member name="T:SharpHelper.Util.StringHelper">
             <summary>
             Helper class that provides extension methods for <see cref="T:System.String"/>.
@@ -1202,6 +1339,14 @@
             <typeparam name="TInterface">Interface</typeparam>
             <param name="t">Type</param>
             <returns>True if this type implements <typeparamref name="TInterface"/></returns>
+        </member>
+        <member name="M:SharpHelper.Util.TypeHelper.IsInherit``1(System.Type)">
+            <summary>
+            Check if a type is inherited from another type
+            </summary>
+            <typeparam name="TClass">Interface</typeparam>
+            <param name="t">Type</param>
+            <returns>True if this type is inherited from <typeparamref name="TClass"/></returns>
         </member>
         <member name="M:SharpHelper.Util.TypeHelper.Get(System.Object,System.String,System.Boolean)">
             <summary>

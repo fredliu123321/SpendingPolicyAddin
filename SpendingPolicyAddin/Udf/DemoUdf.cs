@@ -1,5 +1,4 @@
 ﻿using System;
-using SharpExcelAddinBase.ObjectSystem;
 using SharpExcelAddinBase.TemplateFunction;
 using SharpHelper.Util;
 using SpendingPolicyAddin.Seo;
@@ -11,8 +10,8 @@ namespace SpendingPolicyAddin.Udf {
     public static class BsmModel {
         [TemplatedUdf("BlackScholes", Description = "Calculate price by BSM")]
         public static double EuroOptionPricing(
-            [ParaText("Option to be calculated"), SeoType(typeof(StockOption))] SharpExcelObject option,
-            [ParaText("Risk free rate to be used"), DblRange(-1, 1)] double r) {
+            [ParaText("Option to be calculated")] StockOption option,
+            [ParaText("Risk free rate to be used"), DoubleRange(-1, 1)] double r) {
             var op = option.To<EuroStockOption>();
             var stock = op.Underlying;
             var s = stock.Price;
