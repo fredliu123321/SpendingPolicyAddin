@@ -25,6 +25,231 @@
             Default implementation of <see cref="M:SharpExcelAddinBase.Addin.AutoOpen"/>. Register UDFs and subroutines into Excel
             </summary>
         </member>
+        <member name="T:SharpExcelAddinBase.DataObject.DataTableHelper">
+            <summary>
+            Helper class that provides functionalities to <see cref="T:SharpExcelAddinBase.DataObject.SharpDataTable"/> and <see cref="T:SharpExcelAddinBase.DataObject.SharpDataArray"/>
+            </summary>
+        </member>
+        <member name="F:SharpExcelAddinBase.DataObject.DataTableHelper.EX_CAT">
+            <summary>
+            Default excel function category
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.DataTable(System.String,System.Object[0:,0:],System.Object[0:,0:],System.Object[0:,0:])">
+            <summary>
+            Build a new data table in Excel
+            </summary>
+            <param name="name">Name of the data table</param>
+            <param name="data">Data of the data table</param>
+            <param name="columnTitles">Optional column titles of the data table</param>
+            <param name="rowTitles">Optional row titles of the data table</param>
+            <returns>New data table</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.Array(System.String,System.Object[0:,0:],System.Object[0:,0:])">
+            <summary>
+            Build a new data array in Excel
+            </summary>
+            <param name="name">Name of the data array</param>
+            <param name="data">Data of the data array</param>
+            <param name="index">Optional indexes of the data array</param>
+            <returns>New data array</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.TableColumn(SharpExcelAddinBase.DataObject.SharpDataTable,System.Object)">
+            <summary>
+            Get a column from a data table in Excel
+            </summary>
+            <param name="table">Data table</param>
+            <param name="columnIndex">Column title or index to fetch</param>
+            <returns>A data array of the column</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.TableRow(SharpExcelAddinBase.DataObject.SharpDataTable,System.Object)">
+            <summary>
+            Get a row from a data table in Excel
+            </summary>
+            <param name="table">Data table</param>
+            <param name="rowIndex">Row title or index to fetch</param>
+            <returns>A data array of the row</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.TableElement(SharpExcelAddinBase.DataObject.SharpDataTable,System.Object,System.Object)">
+            <summary>
+            Get an element from a data table in Excel
+            </summary>
+            <param name="table">Data table</param>
+            <param name="columnIndex">Column title or index to fetch</param>
+            <param name="rowIndex">Row title or index to fetch</param>
+            <returns>Element in the data table</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.ArrayElement(SharpExcelAddinBase.DataObject.SharpDataArray,System.Object)">
+            <summary>
+            Get an element from a data array in Excel
+            </summary>
+            <param name="array">Data array</param>
+            <param name="index">index of the element</param>
+            <returns>Element in the data array</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.ExtractTable(SharpExcelAddinBase.DataObject.SharpDataTable)">
+            <summary>
+            Get data from a data table in Excel
+            </summary>
+            <param name="table">Data table</param>
+            <returns>Data in the data table</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.ExtractArray(SharpExcelAddinBase.DataObject.SharpDataArray)">
+            <summary>
+            Extract data from a data array in Excel
+            </summary>
+            <param name="array">Data array</param>
+            <returns>Data in the data array</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.TableSize(SharpExcelAddinBase.DataObject.SharpDataTable,System.Int32)">
+            <summary>
+            Get the size of a data table in Excel
+            </summary>
+            <param name="table">Data table</param>
+            <param name="dimension">Row = 0, column = 1</param>
+            <returns>Table size, return -1 if <paramref name="dimension"/> is not 0 or 1</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.DataTableHelper.ArraySize(SharpExcelAddinBase.DataObject.SharpDataArray)">
+            <summary>
+            Get the size of a data array in Excel
+            </summary>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.DataObject.SharpDataArray">
+            <inheritdoc />
+            <summary>
+            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject" /> that holds a array of date in Excel worksheet
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataArray.#ctor(System.String,System.Object[],System.String[])">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpExcelAddinBase.DataObject.SharpDataArray.Index">
+            <summary>
+            Optional index of the data array
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.DataObject.SharpDataArray.Data">
+            <summary>
+            Data of the data array
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataArray.GetElement(System.Object)">
+            <summary>
+            Get an element of the data array
+            </summary>
+            <param name="index">Key or index</param>
+            <returns>Element in the data array</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.DataObject.SharpDataTable">
+            <inheritdoc />
+            <summary>
+            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject" /> that holds a table of date in Excel worksheet
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.#ctor(System.String,System.Object[0:,0:],System.String[],System.String[])">
+            <inheritdoc />
+        </member>
+        <member name="P:SharpExcelAddinBase.DataObject.SharpDataTable.ColumnTitles">
+            <summary>
+            Optional column titles of the data table
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.DataObject.SharpDataTable.RowTitles">
+            <summary>
+            Optional row titles of the data table
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.DataObject.SharpDataTable.Data">
+            <summary>
+            Data in the data table
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.GetColumn(System.Object)">
+            <summary>
+            Get a column from a data table
+            </summary>
+            <param name="columnIndex">Column key or index</param>
+            <returns>Column in the data table</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.GetRow(System.Object)">
+            <summary>
+            Get a row from a data table
+            </summary>
+            <param name="rowIndex">Row key or index</param>
+            <returns>Row in the data table</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.GetElement(System.Object,System.Object)">
+            <summary>
+            Get an element from a data table
+            </summary>
+            <param name="columnIndex">Column key or index</param>
+            <param name="rowIndex">Row key or index</param>
+            <returns>Element in the data table</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.IterRows">
+            <summary>
+            Iterate rows
+            </summary>
+            <returns>Rows</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.IterColumns">
+            <summary>
+            Iterate columns
+            </summary>
+            <returns>Columns</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.IterKeyRows">
+            <summary>
+            Iterate rows with keys
+            </summary>
+            <returns>Row titles and rows</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SharpDataTable.IterKeyColumns">
+            <summary>
+            Iterate rows with keys
+            </summary>
+            <returns>Row titles and rows</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.DataObject.SimulationSeoBase`1">
+            <inheritdoc />
+            <summary>
+            Base class for Monte Carlo simulation in Excel
+            </summary>
+            <typeparam name="T">Sample type</typeparam>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SimulationSeoBase`1.#ctor(System.String,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="F:SharpExcelAddinBase.DataObject.SimulationSeoBase`1.Generated">
+            <summary>
+            If this simulation has been generated
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.DataObject.SimulationSeoBase`1.Count">
+            <summary>
+            Sample size
+            </summary>
+        </member>
+        <member name="P:SharpExcelAddinBase.DataObject.SimulationSeoBase`1.Samples">
+            <summary>
+            Samples
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SimulationSeoBase`1.GenerateSamples(System.Action{System.Object},System.Int32)">
+            <summary>
+            Generate samples
+            </summary>
+            <param name="progressDisplay">Method to display progress</param>
+            <param name="displayInt">Interval to update progress display</param>
+        </member>
+        <member name="M:SharpExcelAddinBase.DataObject.SimulationSeoBase`1.GenerateSample">
+            <summary>
+            Generate a sample
+            </summary>
+            <returns>A sample</returns>
+        </member>
         <member name="T:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper">
             <summary>
             Singleton class that holds <see cref="T:SharpHelper.Object.SharpObject"/> in each opening workbooks at runtime
@@ -129,7 +354,7 @@
         </member>
         <member name="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject">
             <summary>
-            Base class of all Excel object in Sharp Excel Add-in Base
+            Excel object in Sharp Excel Add-in Base
             </summary>
         </member>
         <member name="F:SharpExcelAddinBase.ObjectSystem.SharpExcelObject.SEO_CAT">
@@ -151,9 +376,16 @@
             ID of this object
             </summary>
         </member>
-        <member name="T:SharpExcelAddinBase.ObjectSystem.SharpRef">
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpExcelObject.ShowObject">
             <summary>
-            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> that reference a range in Excel worksheet
+            View object in a grid
+            </summary>
+            <returns>Grid view</returns>
+        </member>
+        <member name="T:SharpExcelAddinBase.ObjectSystem.SharpRef">
+            <inheritdoc />
+            <summary>
+            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject" /> that reference a range in Excel worksheet
             </summary>
         </member>
         <member name="P:SharpExcelAddinBase.ObjectSystem.SharpRef.Address">
@@ -178,8 +410,9 @@
             <returns>Value of the range</returns>
         </member>
         <member name="T:SharpExcelAddinBase.ObjectSystem.SharpValueContainer">
+            <inheritdoc />
             <summary>
-            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject"/> that hold a complex value in Excel worksheet
+            Special <see cref="T:SharpExcelAddinBase.ObjectSystem.SharpExcelObject" /> that hold a complex value in Excel worksheet
             </summary>
         </member>
         <member name="M:SharpExcelAddinBase.ObjectSystem.SharpValueContainer.#ctor(System.String,System.Object)">
@@ -189,6 +422,9 @@
             <summary>
             Value in hold
             </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.SharpValueContainer.ShowObject">
+            <inheritdoc />
         </member>
         <member name="M:SharpExcelAddinBase.ObjectSystem.SharpValueContainer.ExtractValue(System.String,System.String)">
             <summary>
@@ -459,43 +695,6 @@
             <summary>
             Must link to <see cref="M:SharpExcelAddinBase.Ribbon.SharpDefaultUi.SubClearCache"/>
             </summary>
-        </member>
-        <member name="T:SharpExcelAddinBase.Simulation.SimulationSeoBase`1">
-            <summary>
-            Base class for Monte Carlo simulation in Excel
-            </summary>
-            <typeparam name="T">Sample type</typeparam>
-        </member>
-        <member name="M:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.#ctor(System.String,System.Int32)">
-            <inheritdoc />
-        </member>
-        <member name="P:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.Generated">
-            <summary>
-            If this simulation has been generated
-            </summary>
-        </member>
-        <member name="P:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.Count">
-            <summary>
-            Sample size
-            </summary>
-        </member>
-        <member name="P:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.Samples">
-            <summary>
-            Samples
-            </summary>
-        </member>
-        <member name="M:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.GenerateSamples(System.Action{System.Object},System.Int32)">
-            <summary>
-            Generate samples
-            </summary>
-            <param name="progressDisplay">Method to display progress</param>
-            <param name="displayInt">Interval to update progress display</param>
-        </member>
-        <member name="M:SharpExcelAddinBase.Simulation.SimulationSeoBase`1.GenerateSample">
-            <summary>
-            Generate a sample
-            </summary>
-            <returns>A sample</returns>
         </member>
         <member name="T:SharpExcelAddinBase.TemplateFunction.TemplatedUdfProviderAttribute">
             <inheritdoc />
@@ -832,13 +1031,13 @@
             <param name="csharpValue">C# value from formula</param>
             <returns>Excel format value</returns>
         </member>
-        <member name="T:SharpExcelAddinBase.Utility.SharpExcelException">
+        <member name="T:SharpExcelAddinBase.Utility.ShowException">
             <inheritdoc/>
             <summary>
             Exception that thrown by SharpExcelAddinBase internally
             </summary>
         </member>
-        <member name="M:SharpExcelAddinBase.Utility.SharpExcelException.#ctor(System.String)">
+        <member name="M:SharpExcelAddinBase.Utility.ShowException.#ctor(System.String)">
             <inheritdoc />
         </member>
         <member name="T:SharpExcelAddinBase.Utility.RangeHelper">
