@@ -40,6 +40,7 @@
     <Reference Include="ExcelDna.Registration, Version=0.34.6455.41786, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDna.Registration.0.34.7\lib\net40\ExcelDna.Registration.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="SharpExcelAddinBase">
       <HintPath>..\ref\SharpExcelAddinBase.dll</HintPath>
     </Reference>

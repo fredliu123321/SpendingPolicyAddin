@@ -4,6 +4,395 @@
         <name>SharpHelper</name>
     </assembly>
     <members>
+        <member name="T:SharpHelper.MathHelper.StatHelper">
+            <summary>
+            Helper class that provides extension methods for statistics.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.MathHelper.StatHelper.Variance(System.Double[])">
+            <summary>
+            Variance of an array
+            </summary>
+            <param name="xs">Input array</param>
+            <returns>Variance</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.StatHelper.Volatility(System.Double[])">
+            <summary>
+            Volatility of an array
+            </summary>
+            <param name="xs">Input array</param>
+            <returns>Volatility</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.StatHelper.Skewness(System.Double[])">
+            <summary>
+            Skewness of an array
+            </summary>
+            <param name="xs">Input array</param>
+            <returns>Skewness</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.StatHelper.Kurtosis(System.Double[])">
+            <summary>
+            Kurtosis of an array
+            </summary>
+            <param name="xs">Input array</param>
+            <returns>Kurtosis</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.StatHelper.Covariance(System.Double[],System.Double[])">
+            <summary>
+            Covariance of two arrays
+            </summary>
+            <param name="xs">Input array1</param>
+            <param name="ys">Input array2</param>
+            <returns>Covariance</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.StatHelper.Correlation(System.Double[],System.Double[])">
+            <summary>
+            Correlation coefficient of two arrays
+            </summary>
+            <param name="xs">Input array1</param>
+            <param name="ys">Input array2</param>
+            <returns>Correlation coefficient</returns>
+        </member>
+        <member name="T:SharpHelper.MathHelper.LinearAlgebraHelper">
+            <summary>
+            Helper class that provides extension methods for linear algebra.
+            </summary>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.EquationsSolver(System.Double[0:,0:],System.Double[])">
+            <summary>
+            Solve a linear equation system in the form of <code>Ax = b</code>
+            </summary>
+            <param name="a">2D array of coefficients</param>
+            <param name="b">Array of constant terms</param>
+            <returns>2D array of result</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.CholeskyDecomposition(System.Double[0:,0:])">
+            <summary>
+            Cholesky decomposition of a matrix
+            </summary>
+            <param name="sqr">Square matrix</param>
+            <returns>Lower triangle of the result</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Mul(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Right multiply a matrix
+            </summary>
+            <param name="matrix1">Matrix on the left</param>
+            <param name="matrix2">Matrix on the right</param>
+            <returns>Multiply result</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.T(System.Double[0:,0:])">
+            <summary>
+            Transpose the matrix
+            </summary>
+            <param name="matrix">Matrix input</param>
+            <returns>Transpose of a matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.ToCol(System.Double[])">
+            <summary>
+            Cast a 1D array into a column matrix
+            </summary>
+            <param name="array">Array input</param>
+            <returns>Column matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Identity(System.Int32)">
+            <summary>
+            Generate identity matrix
+            </summary>
+            <param name="size">Size of the matrix</param>
+            <returns>Identity matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Symmetric(System.Double[0:,0:],System.Boolean)">
+            <summary>
+            Cast a square matrix to a symmetric matrix
+            </summary>
+            <param name="array">Input matrix</param>
+            <param name="lower">Use lower triangle or upper triangle</param>
+            <returns>Symmetric matrix</returns>
+        </member>
+        <member name="T:SharpHelper.MathHelper.Matrix">
+            <summary>
+            Class to represent a matrix
+            </summary>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Equals(SharpHelper.MathHelper.Matrix)">
+            <summary>
+            Check this <see cref="T:SharpHelper.MathHelper.Matrix"/> is element-wise equal to another matrix
+            </summary>
+            <param name="other">Matrix</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.#ctor(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.#ctor(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.#ctor(System.Double[0:,0:])">
+            <inheritdoc />
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.op_Addition(SharpHelper.MathHelper.Matrix,SharpHelper.MathHelper.Matrix)">
+            <summary>
+            Sum two matrices element-wise
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.op_Subtraction(SharpHelper.MathHelper.Matrix,SharpHelper.MathHelper.Matrix)">
+            <summary>
+            A matrix minus another matrix element-wise
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.op_Multiply(SharpHelper.MathHelper.Matrix,SharpHelper.MathHelper.Matrix)">
+            <summary>
+            Matrix multiplication
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.op_Division(System.Double,SharpHelper.MathHelper.Matrix)">
+            <summary>
+            A double divides by a matrix 
+            </summary>
+            <param name="i">Scale</param>
+            <param name="matrix">Matrix</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.op_Equality(SharpHelper.MathHelper.Matrix,SharpHelper.MathHelper.Matrix)">
+            <summary>
+            Check two <see cref="T:SharpHelper.MathHelper.Matrix"/> are element-wise equal
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.op_Inequality(SharpHelper.MathHelper.Matrix,SharpHelper.MathHelper.Matrix)">
+            <summary>
+            Check two <see cref="T:SharpHelper.MathHelper.Matrix"/> are not element-wise equal
+            </summary>
+            <param name="matrix1">Matrix 1</param>
+            <param name="matrix2">Matrix 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Display">
+            <summary>
+            Display the matrix on screen
+            </summary>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Display(System.String)">
+            <summary>
+            Display the matrix on screen
+            </summary>
+            <param name="format">Element format</param>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Inverse">
+            <summary>
+            Inverse Matrix
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Transpose">
+            <summary>
+            Transpose Matrix
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Zeros(System.Int32)">
+            <summary>
+            Get a matrix with all zeros
+            </summary>
+            <param name="size">Row and column count</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Zeros(System.Int32,System.Int32)">
+            <summary>
+            Get a matrix with all zeros
+            </summary>
+            <param name="rows">Row count</param>
+            <param name="cols">Column count</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.LinearSolve(SharpHelper.MathHelper.Matrix,SharpHelper.MathHelper.Matrix)">
+            <summary>
+            Solve a linear equation system
+            </summary>
+            <param name="cof">Coefficients</param>
+            <param name="con">Constants</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Det">
+            <summary>
+            Determinant of the matrix
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SharpHelper.MathHelper.Matrix.IsSquare">
+            <summary>
+            If this <see cref="T:SharpHelper.MathHelper.Matrix"/> is a square matrix
+            </summary>
+        </member>
+        <member name="P:SharpHelper.MathHelper.Matrix.IsSingular">
+            <summary>
+            If this <see cref="T:SharpHelper.MathHelper.Matrix"/> is a singular
+            </summary>
+        </member>
+        <member name="P:SharpHelper.MathHelper.Matrix.Rows">
+            <summary>
+            Row count
+            </summary>
+        </member>
+        <member name="P:SharpHelper.MathHelper.Matrix.Columns">
+            <summary>
+            Column count
+            </summary>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Inverse(System.Double[0:,0:])">
+            <summary>
+            Inverse the Matrix
+            </summary>
+            <param name="mat">The Matrix to be Inversed</param>
+            <returns>The Inversed Matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Determinant(System.Double[0:,0:])">
+            <summary>
+            Calculate the Determinant
+            </summary>
+            <param name="mat">The Matrix used to calculate</param>
+            <returns>The Determinant</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.ScaleBy(System.Double,System.Double[0:,0:])">
+            <summary>
+            Scale the Matrix by a specified ratio
+            </summary>
+            <param name="scalar">The Ratio for the Scale</param>
+            <param name="mat">The Matrix which will be scaled</param>
+            <returns>A new Matrix which is scaled with a specified ratio</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.UnitMatrix(System.Int32)">
+            <summary>
+            To get a unit matrix
+            </summary>
+            <param name="dimension">Dimension</param>
+            <returns>The unit double array</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.RowDiv(System.Double[0:,0:],System.Int32,System.Double)">
+            <summary>
+            Scale a specified Row
+            </summary>
+            <param name="mat">The Matrix to be scaled</param>
+            <param name="row">The Specified Row</param>
+            <param name="scaleRatio">The Scale Ratio</param>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.RowSub(System.Double[0:,0:],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Subtract a specified Row from another Row
+            </summary>
+            <param name="mat">The Matrix to be subtract</param>
+            <param name="row1">The Row Index to be subtracted</param>
+            <param name="row2">The Row Index to subtract</param>
+            <param name="scaleRatio">Scale Ratio</param>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.ColumnSub(System.Double[0:,0:],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Subtract a specified Column from another Column
+            </summary>
+            <param name="mat">The Matrix to be subtracted</param>
+            <param name="column1">The Column Index to be subtracted</param>
+            <param name="column2">The Column Index to Subtract</param>
+            <param name="scaleRatio">Scale Ratio</param>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.InterRow(System.Double[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Exchange a specified row's value
+            </summary>
+            <param name="mat">The Matrix to be exchanged</param>
+            <param name="row1">Row index</param>
+            <param name="row2">Row index</param>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.FilterMatrix(System.Double[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            To Filter the Matrix
+            </summary>
+            <param name="mat">The Matrix to be Filtered</param>
+            <param name="row">A specified Row</param>
+            <param name="column">A specified Column</param>
+            <returns>The Filtered Matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.Matrix.Transpose(System.Double[0:,0:])">
+            <summary>
+            Transpose Matrix
+            </summary>
+            <param name="mat">The Matrix to be Transposed</param>
+            <returns>The Transposed Matrix</returns>
+        </member>
+        <member name="P:SharpHelper.MathHelper.Matrix.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or Sets the specified value of the Matrix
+            </summary>
+            <param name="i">The row position in the Matrix</param>
+            <param name="j">The Column position in the Matrix</param>
+            <returns>Double, The specified value of the Matrix</returns>
+        </member>
+        <member name="P:SharpHelper.MathHelper.Matrix.Data">
+            <summary>
+            Gets the Matrix
+            </summary>
+        </member>
+        <member name="T:SharpHelper.MathHelper.NumericCalculus">
+            <summary>
+            Helper class that provides functionalities to numeric calculus
+            </summary>
+        </member>
+        <member name="M:SharpHelper.MathHelper.NumericCalculus.NuFirstOrderWithEnds(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use two side numeric derivatives in the middle and single side in both ends
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.NumericCalculus.NuFirstOrder(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use two side numeric derivatives in the middle only
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n - 2</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.NumericCalculus.NuFirstOrderPo(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use positive side numeric derivatives until the last term
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n - 1</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.NumericCalculus.NuFirstOrderNe(System.Double[],System.Double[])">
+            <summary>
+            Get the first derivatives of ys. Use negative side numeric derivatives from the second term
+            </summary>
+            <param name="xs">Independent variable with length n</param>
+            <param name="ys">Dependent variable with length n</param>
+            <returns>A double array with length n - 1</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.NumericCalculus.NuDeltaRate(System.Double[])">
+            <summary>
+            Get the change rate of xs starting from the second term
+            </summary>
+            <param name="xs">Variable with length n</param>
+            <returns>A double array with length n - 1</returns>
+        </member>
         <member name="T:SharpHelper.Object.SharpCache">
             <summary>
             A cache object that holds a bunch of <see cref="T:SharpHelper.Object.SharpObject"/>
@@ -229,289 +618,195 @@
             <param name="rho">Correlation of two dimensions</param>
             <returns></returns>
         </member>
-        <member name="T:SharpHelper.Simulation.LinearAlgebraHelper">
+        <member name="T:SharpHelper.Simulation.MultiNormalSampleGenerator">
             <summary>
-            Helper class that provides extension methods for linear algebra.
+            Multi-dimension normal distributed random samples generator
             </summary>
         </member>
-        <member name="M:SharpHelper.Simulation.LinearAlgebraHelper.EquationsSolver(System.Double[0:,0:],System.Double[])">
+        <member name="P:SharpHelper.Simulation.MultiNormalSampleGenerator.Cov">
             <summary>
-            Solve a linear equation system in the form of <code>Ax = b</code>
-            </summary>
-            <param name="a">2D array of coefficients</param>
-            <param name="b">Array of constant terms</param>
-            <returns>2D array of result</returns>
-        </member>
-        <member name="T:SharpHelper.Simulation.LinearInterpolation">
-            <summary>
-            Helper class that provides functionalities for linear interpolation
+            Variance-covariance matrix
             </summary>
         </member>
-        <member name="M:SharpHelper.Simulation.LinearInterpolation.InLinearFit(System.Double[],System.Double[],System.Double)">
+        <member name="P:SharpHelper.Simulation.MultiNormalSampleGenerator.Miu">
             <summary>
-            Linear interpolate new y for new x
-            </summary>
-            <param name="xs">Sorted array of xs</param>
-            <param name="ys">Sorted array of ys</param>
-            <param name="newX">X value to be interpolated</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.LinearInterpolation.InLinearSeq(System.Double,System.Double,System.Int32)">
-            <summary>
-            Linear interpolate between two ends
-            </summary>
-            <param name="lower">Lower bound</param>
-            <param name="upper">Upper bound</param>
-            <param name="count">Number of points</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.LinearInterpolation.InLinearExpand(System.Double[],System.Double[],System.Int32)">
-            <summary>
-            Linear interpolate inside an array
-            </summary>
-            <param name="xs">Sorted array of xs</param>
-            <param name="ys">Sorted array of ys</param>
-            <param name="count">Number of points</param>
-            <returns></returns>
-        </member>
-        <member name="T:SharpHelper.Simulation.Matrix">
-            <summary>
-            Class to represent a matrix
+            Mean of each dimension
             </summary>
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Equals(SharpHelper.Simulation.Matrix)">
-            <summary>
-            Check this <see cref="T:SharpHelper.Simulation.Matrix"/> is element-wise equal to another matrix
-            </summary>
-            <param name="other">Matrix</param>
-            <returns></returns>
+        <member name="M:SharpHelper.Simulation.MultiNormalSampleGenerator.#ctor(System.Int32,System.Double[0:,0:],System.Double[])">
+            <inheritdoc />
+            <param name="dimension">Dimension of the sample</param>
+            <param name="miu">Mean of each dimension</param>
+            <param name="cov">Variance-covariance matrix, only lower triangle will be used</param>
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Equals(System.Object)">
+        <member name="M:SharpHelper.Simulation.MultiNormalSampleGenerator.GenerateSample">
             <inheritdoc />
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.GetHashCode">
+        <member name="T:SharpHelper.Simulation.ItoProcessGenerator">
+            <summary>
+            Generate path for Ito process given random samples
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.ItoProcessGenerator.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <inheritdoc />
+            <param name="init">Initial value</param>
+            <param name="t0">Initial time</param>
+            <param name="lower">Optimal lower bound of process</param>
+            <param name="upper">Optimal upper bound of process</param>
+        </member>
+        <member name="P:SharpHelper.Simulation.ItoProcessGenerator.Init">
+            <summary>
+            Initial value
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.ItoProcessGenerator.T0">
+            <summary>
+            Initial time
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.ItoProcessGenerator.Lower">
+            <summary>
+            Optimal lower bound of process
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.ItoProcessGenerator.Upper">
+            <summary>
+            Optimal upper bound of process
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.ItoProcessGenerator.Drift(System.Double,System.Double)">
+            <summary>
+            Generate drift given current value
+            </summary>
+            <param name="cur">Current value</param>
+            <param name="t">Current time</param>
+            <returns>Drift</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.ItoProcessGenerator.Diffusion(System.Double,System.Double)">
+            <summary>
+            Generate diffusion given current value
+            </summary>
+            <param name="cur">Current value</param>
+            <param name="t">Current time</param>
+            <returns>Diffusion</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.ItoProcessGenerator.GeneratePath(System.Double,System.Double[])">
+            <summary>
+            Generate a path given random samples
+            </summary>
+            <param name="maturity">Time for simulation</param>
+            <param name="rnds">Standard random samples</param>
+            <returns>Value path</returns>
+            <exception cref="T:System.ArgumentNullException">Random sample is empty</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Maturity is no greater than 0</exception>
+        </member>
+        <member name="T:SharpHelper.Simulation.BrownianMotionProcessGenerator">
+            <summary>
+            Generate path for Brownian motion given random samples
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.BrownianMotionProcessGenerator.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <inheritdoc/>
+            <param name="init">Initial value</param>
+            <param name="miu">Parameter μ</param>
+            <param name="sigma">Parameter σ</param>
+            <param name="t0">Initial time</param>
+        </member>
+        <member name="P:SharpHelper.Simulation.BrownianMotionProcessGenerator.Miu">
+            <summary>
+            Parameter μ
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.BrownianMotionProcessGenerator.Sigma">
+            <summary>
+            Parameter σ
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.BrownianMotionProcessGenerator.Drift(System.Double,System.Double)">
             <inheritdoc />
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.#ctor(System.Int32)">
+        <member name="M:SharpHelper.Simulation.BrownianMotionProcessGenerator.Diffusion(System.Double,System.Double)">
             <inheritdoc />
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.#ctor(System.Int32,System.Int32)">
+        <member name="T:SharpHelper.Simulation.GeometricBrownianMotionProcessGenerator">
+            <summary>
+            Generate path for Geometric Brownian motion given random samples
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.GeometricBrownianMotionProcessGenerator.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <inheritdoc/>
+            <param name="init">Initial value</param>
+            <param name="miu">Parameter μ</param>
+            <param name="sigma">Parameter σ</param>
+            <param name="t0">Initial time</param>
+        </member>
+        <member name="P:SharpHelper.Simulation.GeometricBrownianMotionProcessGenerator.Miu">
+            <summary>
+            Parameter μ
+            </summary>
+        </member>
+        <member name="P:SharpHelper.Simulation.GeometricBrownianMotionProcessGenerator.Sigma">
+            <summary>
+            Parameter σ
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Simulation.GeometricBrownianMotionProcessGenerator.Drift(System.Double,System.Double)">
             <inheritdoc />
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.#ctor(System.Double[0:,0:])">
+        <member name="M:SharpHelper.Simulation.GeometricBrownianMotionProcessGenerator.Diffusion(System.Double,System.Double)">
             <inheritdoc />
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.op_Addition(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
+        <member name="T:SharpHelper.Simulation.MultiSampleGeneratorBase">
             <summary>
-            Sum two matrices element-wise
-            </summary>
-            <param name="matrix1">Matrix 1</param>
-            <param name="matrix2">Matrix 2</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.op_Subtraction(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
-            <summary>
-            A matrix minus another matrix element-wise
-            </summary>
-            <param name="matrix1">Matrix 1</param>
-            <param name="matrix2">Matrix 2</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.op_Multiply(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
-            <summary>
-            Matrix multiplication
-            </summary>
-            <param name="matrix1">Matrix 1</param>
-            <param name="matrix2">Matrix 2</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.op_Division(System.Double,SharpHelper.Simulation.Matrix)">
-            <summary>
-            A double divides by a matrix 
-            </summary>
-            <param name="i">Scale</param>
-            <param name="matrix">Matrix</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.op_Equality(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
-            <summary>
-            Check two <see cref="T:SharpHelper.Simulation.Matrix"/> are element-wise equal
-            </summary>
-            <param name="matrix1">Matrix 1</param>
-            <param name="matrix2">Matrix 2</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.op_Inequality(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
-            <summary>
-            Check two <see cref="T:SharpHelper.Simulation.Matrix"/> are not element-wise equal
-            </summary>
-            <param name="matrix1">Matrix 1</param>
-            <param name="matrix2">Matrix 2</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Display">
-            <summary>
-            Display the matrix on screen
+            Multi-dimension random samples generator
             </summary>
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Display(System.String)">
-            <summary>
-            Display the matrix on screen
-            </summary>
-            <param name="format">Element format</param>
+        <member name="M:SharpHelper.Simulation.MultiSampleGeneratorBase.#ctor(System.Int32)">
+            <inheritdoc/>
+            <param name="dimension">Dimension of the sample</param>
         </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Inverse">
+        <member name="P:SharpHelper.Simulation.MultiSampleGeneratorBase.Dimension">
             <summary>
-            Inverse Matrix
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Transpose">
-            <summary>
-            Transpose Matrix
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Zeros(System.Int32)">
-            <summary>
-            Get a matrix with all zeros
-            </summary>
-            <param name="size">Row and column count</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Zeros(System.Int32,System.Int32)">
-            <summary>
-            Get a matrix with all zeros
-            </summary>
-            <param name="rows">Row count</param>
-            <param name="cols">Column count</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.LinearSolve(SharpHelper.Simulation.Matrix,SharpHelper.Simulation.Matrix)">
-            <summary>
-            Solve a linear equation system
-            </summary>
-            <param name="cof">Coefficients</param>
-            <param name="con">Constants</param>
-            <returns></returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Det">
-            <summary>
-            Determinant of the matrix
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:SharpHelper.Simulation.Matrix.IsSquare">
-            <summary>
-            If this <see cref="T:SharpHelper.Simulation.Matrix"/> is a square matrix
+            Dimension of the sample
             </summary>
         </member>
-        <member name="P:SharpHelper.Simulation.Matrix.IsSingular">
+        <member name="M:SharpHelper.Simulation.MultiSampleGeneratorBase.GenerateSample">
             <summary>
-            If this <see cref="T:SharpHelper.Simulation.Matrix"/> is a singular
+            Generate a sample
+            </summary>
+            <returns>A sample in an array</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.MultiSampleGeneratorBase.GenerateSamplesByDim(System.Int32)">
+            <summary>
+            Generate samples, each array is a dimension
+            </summary>
+            <param name="size">Sample size</param>
+            <returns>Samples in arrays</returns>
+        </member>
+        <member name="M:SharpHelper.Simulation.MultiSampleGeneratorBase.GenerateSamplesBySam(System.Int32)">
+            <summary>
+            Generate samples, each array is a sample
+            </summary>
+            <param name="size">Sample size</param>
+            <returns>Samples in arrays</returns>
+        </member>
+        <member name="T:SharpHelper.Simulation.SampleGeneratorBase">
+            <summary>
+            Random samples generator
             </summary>
         </member>
-        <member name="P:SharpHelper.Simulation.Matrix.Rows">
+        <member name="M:SharpHelper.Simulation.SampleGeneratorBase.GenerateSample">
             <summary>
-            Row count
+            Generate a sample
             </summary>
+            <returns>A sample in an array</returns>
         </member>
-        <member name="P:SharpHelper.Simulation.Matrix.Columns">
+        <member name="M:SharpHelper.Simulation.SampleGeneratorBase.GenerateSamples(System.Int32)">
             <summary>
-            Column count
+            Generate samples
             </summary>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Inverse(System.Double[0:,0:])">
-            <summary>
-            Inverse the Matrix
-            </summary>
-            <param name="mat">The Matrix to be Inversed</param>
-            <returns>The Inversed Matrix</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Determinant(System.Double[0:,0:])">
-            <summary>
-            Calculate the Determinant
-            </summary>
-            <param name="mat">The Matrix used to calculate</param>
-            <returns>The Determinant</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.ScaleBy(System.Double,System.Double[0:,0:])">
-            <summary>
-            Scale the Matrix by a specified ratio
-            </summary>
-            <param name="scalar">The Ratio for the Scale</param>
-            <param name="mat">The Matrix which will be scaled</param>
-            <returns>A new Matrix which is scaled with a specified ratio</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.UnitMatrix(System.Int32)">
-            <summary>
-            To get a unit matrix
-            </summary>
-            <param name="dimension">Dimension</param>
-            <returns>The unit double array</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.RowDiv(System.Double[0:,0:],System.Int32,System.Double)">
-            <summary>
-            Scale a specified Row
-            </summary>
-            <param name="mat">The Matrix to be scaled</param>
-            <param name="row">The Specified Row</param>
-            <param name="scaleRatio">The Scale Ratio</param>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.RowSub(System.Double[0:,0:],System.Int32,System.Int32,System.Double)">
-            <summary>
-            Subtract a specified Row from another Row
-            </summary>
-            <param name="mat">The Matrix to be subtract</param>
-            <param name="row1">The Row Index to be subtracted</param>
-            <param name="row2">The Row Index to subtract</param>
-            <param name="scaleRatio">Scale Ratio</param>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.ColumnSub(System.Double[0:,0:],System.Int32,System.Int32,System.Double)">
-            <summary>
-            Subtract a specified Column from another Column
-            </summary>
-            <param name="mat">The Matrix to be subtracted</param>
-            <param name="column1">The Column Index to be subtracted</param>
-            <param name="column2">The Column Index to Subtract</param>
-            <param name="scaleRatio">Scale Ratio</param>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.InterRow(System.Double[0:,0:],System.Int32,System.Int32)">
-            <summary>
-            Exchange a specified row's value
-            </summary>
-            <param name="mat">The Matrix to be exchanged</param>
-            <param name="row1">Row index</param>
-            <param name="row2">Row index</param>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.FilterMatrix(System.Double[0:,0:],System.Int32,System.Int32)">
-            <summary>
-            To Filter the Matrix
-            </summary>
-            <param name="mat">The Matrix to be Filtered</param>
-            <param name="row">A specified Row</param>
-            <param name="column">A specified Column</param>
-            <returns>The Filtered Matrix</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.Matrix.Transpose(System.Double[0:,0:])">
-            <summary>
-            Transpose Matrix
-            </summary>
-            <param name="mat">The Matrix to be Transposed</param>
-            <returns>The Transposed Matrix</returns>
-        </member>
-        <member name="P:SharpHelper.Simulation.Matrix.Item(System.Int32,System.Int32)">
-            <summary>
-            Gets or Sets the specified value of the Matrix
-            </summary>
-            <param name="i">The row position in the Matrix</param>
-            <param name="j">The Column position in the Matrix</param>
-            <returns>Double, The specified value of the Matrix</returns>
-        </member>
-        <member name="P:SharpHelper.Simulation.Matrix.Data">
-            <summary>
-            Gets the Matrix
-            </summary>
+            <param name="size">Sample size</param>
+            <returns>Samples in an array</returns>
         </member>
         <member name="T:SharpHelper.Simulation.NormalDist">
             <summary>
@@ -551,50 +846,6 @@
             <param name="mu">Mean of the normal distribution</param>
             <param name="sigma">Standard deviation of the normal distribution</param>
             <returns></returns>
-        </member>
-        <member name="T:SharpHelper.Simulation.NumericCalculus">
-            <summary>
-            Helper class that provides functionalities to numeric calculus
-            </summary>
-        </member>
-        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrderWithEnds(System.Double[],System.Double[])">
-            <summary>
-            Get the first derivatives of ys. Use two side numeric derivatives in the middle and single side in both ends
-            </summary>
-            <param name="xs">Independent variable with length n</param>
-            <param name="ys">Dependent variable with length n</param>
-            <returns>A double array with length n</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrder(System.Double[],System.Double[])">
-            <summary>
-            Get the first derivatives of ys. Use two side numeric derivatives in the middle only
-            </summary>
-            <param name="xs">Independent variable with length n</param>
-            <param name="ys">Dependent variable with length n</param>
-            <returns>A double array with length n - 2</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrderPo(System.Double[],System.Double[])">
-            <summary>
-            Get the first derivatives of ys. Use positive side numeric derivatives until the last term
-            </summary>
-            <param name="xs">Independent variable with length n</param>
-            <param name="ys">Dependent variable with length n</param>
-            <returns>A double array with length n - 1</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.NumericCalculus.NuFirstOrderNe(System.Double[],System.Double[])">
-            <summary>
-            Get the first derivatives of ys. Use negative side numeric derivatives from the second term
-            </summary>
-            <param name="xs">Independent variable with length n</param>
-            <param name="ys">Dependent variable with length n</param>
-            <returns>A double array with length n - 1</returns>
-        </member>
-        <member name="M:SharpHelper.Simulation.NumericCalculus.NuDeltaRate(System.Double[])">
-            <summary>
-            Get the change rate of xs starting from the second term
-            </summary>
-            <param name="xs">Variable with length n</param>
-            <returns>A double array with length n - 1</returns>
         </member>
         <member name="T:SharpHelper.Simulation.RandomHelper">
             <summary>
@@ -641,6 +892,38 @@
             </summary>
             <param name="r">Random instance</param>
             <returns>Next random bool</returns>
+        </member>
+        <member name="T:SharpHelper.Interpolation.LinearInterpolation">
+            <summary>
+            Helper class that provides functionalities for linear interpolation
+            </summary>
+        </member>
+        <member name="M:SharpHelper.Interpolation.LinearInterpolation.InLinearFit(System.Double[],System.Double[],System.Double)">
+            <summary>
+            Linear interpolate new y for new x
+            </summary>
+            <param name="xs">Sorted array of xs</param>
+            <param name="ys">Sorted array of ys</param>
+            <param name="newX">X value to be interpolated</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Interpolation.LinearInterpolation.InLinearSeq(System.Double,System.Double,System.Int32)">
+            <summary>
+            Linear interpolate between two ends
+            </summary>
+            <param name="lower">Lower bound</param>
+            <param name="upper">Upper bound</param>
+            <param name="count">Number of points</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpHelper.Interpolation.LinearInterpolation.InLinearExpand(System.Double[],System.Double[],System.Int32)">
+            <summary>
+            Linear interpolate inside an array
+            </summary>
+            <param name="xs">Sorted array of xs</param>
+            <param name="ys">Sorted array of ys</param>
+            <param name="count">Number of points</param>
+            <returns></returns>
         </member>
         <member name="T:SharpHelper.Util.ArrayHelper">
             <summary>
@@ -1063,6 +1346,15 @@
             <param name="f">Function</param>
             <returns>Function results</returns>
         </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.Times``1(System.Int32,System.Func{System.Int32,``0})">
+            <summary>
+            Run a function several times
+            </summary>
+            <typeparam name="T">Element type</typeparam>
+            <param name="num">Number of running</param>
+            <param name="f">Function</param>
+            <returns>Function results</returns>
+        </member>
         <member name="M:SharpHelper.Util.EnumerableHelper.IndexOf``1(System.Collections.Generic.IEnumerable{``0},``0)">
             <summary>
             Get the index of an object in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
@@ -1071,6 +1363,13 @@
             <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
             <param name="obj">Object to be found</param>
             <returns>First index of the object in the enumerable, return -1 if object not found</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.For(System.Int32,System.Action{System.Int32})">
+            <summary>
+            Run a method several time
+            </summary>
+            <param name="times">Times for running</param>
+            <param name="method">Method to run</param>
         </member>
         <member name="T:SharpHelper.Util.FunctionHelper">
             <summary>
@@ -1160,10 +1459,11 @@
         </member>
         <member name="M:SharpHelper.Util.ParameterConstraintAttribute.#ctor(System.Type)">
             <inheritdoc />
+            <param name="inputType">Type of valid input value</param>
         </member>
         <member name="P:SharpHelper.Util.ParameterConstraintAttribute.InputType">
             <summary>
-            Type of valid input value 
+            Type of valid input value
             </summary>
         </member>
         <member name="M:SharpHelper.Util.ParameterConstraintAttribute.Validation(System.Object)">
@@ -1188,6 +1488,7 @@
         </member>
         <member name="M:SharpHelper.Util.TypeAccept.#ctor(System.Type)">
             <inheritdoc />
+            <param name="inputType">Type of valid input value</param>
         </member>
         <member name="M:SharpHelper.Util.TypeAccept.Validation(System.Object)">
             <inheritdoc />
@@ -1203,6 +1504,8 @@
         </member>
         <member name="M:SharpHelper.Util.IntRangeAttribute.#ctor(System.Int32,System.Int32)">
             <inheritdoc />
+            <param name="lower">Lower bound of the range</param>
+            <param name="upper">Upper bound of the range</param>
         </member>
         <member name="P:SharpHelper.Util.IntRangeAttribute.Lower">
             <inheritdoc />
@@ -1224,6 +1527,8 @@
         </member>
         <member name="M:SharpHelper.Util.UIntRangeAttribute.#ctor(System.UInt32,System.UInt32)">
             <inheritdoc />
+            <param name="lower">Lower bound of the range</param>
+            <param name="upper">Upper bound of the range</param>
         </member>
         <member name="P:SharpHelper.Util.UIntRangeAttribute.Lower">
             <inheritdoc />
@@ -1245,6 +1550,8 @@
         </member>
         <member name="M:SharpHelper.Util.DoubleRangeAttribute.#ctor(System.Double,System.Double)">
             <inheritdoc />
+            <param name="lower">Lower bound of the range</param>
+            <param name="upper">Upper bound of the range</param>
         </member>
         <member name="P:SharpHelper.Util.DoubleRangeAttribute.Lower">
             <inheritdoc />
@@ -1266,6 +1573,9 @@
         </member>
         <member name="M:SharpHelper.Util.EnumRangeAttribute.#ctor(System.Type,System.Boolean,System.Object[])">
             <inheritdoc />
+            <param name="acceptType">Enum type for the parameter</param>
+            <param name="ignoreCase">Ignore case when matching enum with value</param>
+            <param name="acceptValues">Optional subset of values accepted</param>
         </member>
         <member name="P:SharpHelper.Util.EnumRangeAttribute.AcceptValues">
             <summary>

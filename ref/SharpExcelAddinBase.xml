@@ -973,7 +973,7 @@
             </summary>
             <returns>Worksheet name</returns>
         </member>
-        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object,System.String)">
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object,System.String,System.Boolean)">
             <summary>
             Cast an object from Excel into C# format
             <para>- value type will stays the same                                                            </para>
@@ -984,7 +984,8 @@
              </summary>
             <param name="value">Excel value</param>
             <param name="book">Workbook name, current workbook if blank</param>
-            <returns></returns>
+            <param name="remainObj">Remain object instead of its value</param>
+            <returns>C# format value</returns>
         </member>
         <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToExcelFormat(System.Object)">
             <summary>
@@ -1011,7 +1012,7 @@
         </member>
         <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object[0:,0:],System.String)">
             <summary>
-            Cast a 2D array of Excel objects into C# format using <see cref="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object,System.String)"/> element-wise
+            Cast a 2D array of Excel objects into C# format using <see cref="!:ToSharpFormat(object,string)"/> element-wise
             </summary>
             <param name="values">Excel values</param>
             <param name="book">Workbook name, current workbook if blank</param>
