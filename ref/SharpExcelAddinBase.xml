@@ -25,6 +25,12 @@
             Default implementation of <see cref="M:SharpExcelAddinBase.Addin.AutoOpen"/>. Register UDFs and subroutines into Excel
             </summary>
         </member>
+        <member name="M:SharpExcelAddinBase.CustomXml.CustomXmlObject.ShowObject">
+            <summary>
+            View object in a grid
+            </summary>
+            <returns>Grid view</returns>
+        </member>
         <member name="T:SharpExcelAddinBase.DataObject.DataTableHelper">
             <summary>
             Helper class that provides functionalities to <see cref="T:SharpExcelAddinBase.DataObject.SharpDataTable"/> and <see cref="T:SharpExcelAddinBase.DataObject.SharpDataArray"/>
@@ -300,6 +306,14 @@
             <returns/>
         </member>
         <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Get(System.String,System.String)">
+            <summary>
+            Get a <see cref="T:SharpHelper.Object.SharpObject"/> from a cache
+            </summary>
+            <param name="id">ID of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <param name="book">Workbook name</param>
+            <returns>object or null</returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Get``1(System.String,System.String)">
             <summary>
             Get a <see cref="T:SharpHelper.Object.SharpObject"/> from a cache
             </summary>
@@ -856,6 +870,29 @@
             Run the subroutine from the selection in Excel
             </summary>
         </member>
+        <member name="T:SharpExcelAddinBase.TemplateFunction.ActionSet`1">
+            <summary>
+            Include an setter action and its initial value before setting
+            </summary>
+            <typeparam name="T">Value type</typeparam>
+        </member>
+        <member name="F:SharpExcelAddinBase.TemplateFunction.ActionSet`1.Set">
+            <summary>
+            Setter action
+            </summary>
+        </member>
+        <member name="F:SharpExcelAddinBase.TemplateFunction.ActionSet`1.Initial">
+            <summary>
+            Initial value
+            </summary>
+        </member>
+        <member name="M:SharpExcelAddinBase.TemplateFunction.ActionSet`1.#ctor(`0,System.Action{`0})">
+            <summary>
+            Initial new instance of <see cref="T:SharpExcelAddinBase.TemplateFunction.ActionSet`1"/>
+            </summary>
+            <param name="initial">Initial value</param>
+            <param name="set">Setter action</param>
+        </member>
         <member name="T:SharpExcelAddinBase.Regristration.CacheAttribute">
             <summary>
             Attribute to mark that a Excel function is cached
@@ -921,6 +958,22 @@
             <param name="height">Chart height in pixels</param>
             <returns>Chart object</returns>
         </member>
+        <member name="M:SharpExcelAddinBase.Utility.ChartHelper.DrawSurfaceChart(Microsoft.Office.Interop.Excel.Worksheet,Microsoft.Office.Interop.Excel.Range,System.String,System.String,System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Draw a X-Y-Z-surface chart in Excel
+            </summary>
+            <param name="sheet">Worksheet the chart will be located</param>
+            <param name="range">Data source in the worksheet</param>
+            <param name="title">Chart title</param>
+            <param name="xTitle">X axis title</param>
+            <param name="yTitle">Y axis title</param>
+            <param name="zTitle">Z axis title</param>
+            <param name="left">Left bound in pixels</param>
+            <param name="top">Top bound in pixels</param>
+            <param name="width">Chart width in pixels</param>
+            <param name="height">Chart height in pixels</param>
+            <returns>Chart object</returns>
+        </member>
         <member name="T:SharpExcelAddinBase.Utility.ConfigHelper">
             <summary>
             Helper class that provides functionalities to configuration file
@@ -973,6 +1026,13 @@
             </summary>
             <returns>Worksheet name</returns>
         </member>
+        <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToShortAddress(Microsoft.Office.Interop.Excel.Range)">
+            <summary>
+            Get the address of a <see cref="T:Microsoft.Office.Interop.Excel.Range"/>
+            </summary>
+            <param name="range">Range object</param>
+            <returns>Address contains sheet name and location</returns>
+        </member>
         <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object,System.String,System.Boolean)">
             <summary>
             Cast an object from Excel into C# format
@@ -1012,7 +1072,7 @@
         </member>
         <member name="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object[0:,0:],System.String)">
             <summary>
-            Cast a 2D array of Excel objects into C# format using <see cref="!:ToSharpFormat(object,string)"/> element-wise
+            Cast a 2D array of Excel objects into C# format using <see cref="M:SharpExcelAddinBase.Utility.ExcelUtil.ToSharpFormat(System.Object,System.String,System.Boolean)"/> element-wise
             </summary>
             <param name="values">Excel values</param>
             <param name="book">Workbook name, current workbook if blank</param>
