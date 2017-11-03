@@ -81,10 +81,11 @@
             <param name="matrix2">Matrix on the right</param>
             <returns>Multiply result</returns>
         </member>
-        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.T(System.Double[0:,0:])">
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.T``1(``0[0:,0:])">
             <summary>
             Transpose the matrix
             </summary>
+            <typeparamref name="TSource">Element Type</typeparamref>
             <param name="matrix">Matrix input</param>
             <returns>Transpose of a matrix</returns>
         </member>
@@ -102,6 +103,60 @@
             <param name="size">Size of the matrix</param>
             <returns>Identity matrix</returns>
         </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.PasteCol(System.Double[0:,0:],System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Paste values into a column in a matrix, original matrix will be modified.
+            </summary>
+            <param name="matrix">Source matrix</param>
+            <param name="values">Values to be pasted</param>
+            <param name="row">Top-most row index of the column</param>
+            <param name="col">Left-most column index of the column</param>
+            <returns>Modified matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.PasteRow(System.Double[0:,0:],System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Paste values into a row in a matrix, original matrix will be modified.
+            </summary>
+            <param name="matrix">Source matrix</param>
+            <param name="values">Values to be pasted</param>
+            <param name="row">Top-most row index of the row</param>
+            <param name="col">Left-most column index of the row</param>
+            <returns>Modified matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Paste(System.Double[0:,0:],System.Int32[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Paste values into a range in a matrix, original matrix will be modified.
+            </summary>
+            <param name="matrix">Source matrix</param>
+            <param name="values">Values to be pasted</param>
+            <param name="row">Top-most row index of the range</param>
+            <param name="col">Left-most column index of the range</param>
+            <returns>Modified matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Paste(System.Double[0:,0:],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Paste a value into a position in a matrix, original matrix will be modified.
+            </summary>
+            <param name="matrix">Source matrix</param>
+            <param name="value">Value to be pasted</param>
+            <param name="row">Row index of the position</param>
+            <param name="col">Column index of the position</param>
+            <returns>Modified matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Diag(System.Double[0:,0:])">
+            <summary>
+            Get the diagram of a matrix
+            </summary>
+            <param name="matrix">Square matrix</param>
+            <returns>The diagram of the matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Diag(System.Double[])">
+            <summary>
+            Convert an array into a diagram matrix
+            </summary>
+            <param name="array">Array input</param>
+            <returns>A square matrix</returns>
+        </member>
         <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Symmetric(System.Double[0:,0:],System.Boolean)">
             <summary>
             Cast a square matrix to a symmetric matrix
@@ -109,6 +164,284 @@
             <param name="array">Input matrix</param>
             <param name="lower">Use lower triangle or upper triangle</param>
             <returns>Symmetric matrix</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Plus(System.Double[],System.Double[])">
+            <summary>
+            Add one array with another
+            </summary>
+            <param name="array">Array A</param>
+            <param name="another">Array B</param>
+            <returns>Sum of the two arrays</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Plus(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Add an array with a number
+            </summary>
+            <param name="array">Array</param>
+            <param name="number">Value to be added</param>
+            <returns>Sum of the array and the value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Minus(System.Double[],System.Double[])">
+            <summary>
+            Minus one array with another
+            </summary>
+            <param name="array">Array A</param>
+            <param name="another">Array B</param>
+            <returns>Subtraction of the two arrays</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Minus(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Minus an array with a number
+            </summary>
+            <param name="array">Array</param>
+            <param name="number">Value to be added</param>
+            <returns>Subtraction of the array and the value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Multiply(System.Double[],System.Double[])">
+            <summary>
+            Multiply one array with another, element wise
+            </summary>
+            <param name="array">Array A</param>
+            <param name="another">Array B</param>
+            <returns>Product of the two arrays</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Multiply(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Multiply an array with a number
+            </summary>
+            <param name="array">Array</param>
+            <param name="number">Value to be added</param>
+            <returns>Product of the array and the value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Divide(System.Double[],System.Double[])">
+            <summary>
+            Divide one array with another, element wise
+            </summary>
+            <param name="array">Array A</param>
+            <param name="another">Array B</param>
+            <returns>Division of the two arrays</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Divide(System.Double[],System.Double[],System.Double)">
+            <summary>
+            Divide one array with another, element wise
+            </summary>
+            <param name="array">Array A</param>
+            <param name="another">Array B</param>
+            <param name="safeNumber">Value to use when denominator is zero</param>
+            <returns>Division of the two arrays</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Divide(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Divide an array with a number
+            </summary>
+            <param name="array">Array</param>
+            <param name="number">Value to be added</param>
+            <returns>Division of the array and the value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Reciprocal(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Get reciprocal value of the array
+            </summary>
+            <param name="array">Array A</param>
+            <param name="safeNumber">Value to use when denominator is zero</param>
+            <returns>Reciprocal value of the array</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Reciprocal(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Get reciprocal value of the array
+            </summary>
+            <param name="array">Array A</param>
+            <returns>Reciprocal value of the array</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Product(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Get the product of all elements in an array
+            </summary>
+            <param name="array">Array</param>
+            <returns>The product of all elements</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Product(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get the product of all elements in an array
+            </summary>
+            <param name="array">Array</param>
+            <returns>The product of all elements</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.CumSum(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Get the cumulative sum of an array
+            </summary>
+            <param name="array">Array to be summed</param>
+            <returns>Cumulative sum of an array</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.CumProduct(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Get the cumulative product of an array
+            </summary>
+            <param name="array">Array to be multiplied</param>
+            <returns>Cumulative product of an array</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.CumSum(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get the cumulative sum of an array
+            </summary>
+            <param name="array">Array to be summed</param>
+            <returns>Cumulative sum of an array</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.CumProduct(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get the cumulative product of an array
+            </summary>
+            <param name="array">Array to be multiplied</param>
+            <returns>Cumulative product of an array</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Double[])">
+            <summary>
+            Get the max value
+            </summary>
+            <param name="values">Values</param>
+            <returns>The maximum value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Double[])">
+            <summary>
+            Get the min value
+            </summary>
+            <param name="values">Values</param>
+            <returns>The minimum value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Int32[])">
+            <summary>
+            Get the max value
+            </summary>
+            <param name="values">Values</param>
+            <returns>The maximum value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Int32[])">
+            <summary>
+            Get the min value
+            </summary>
+            <param name="values">Values</param>
+            <returns>The minimum value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Double[][])">
+            <summary>
+            Get the max value in arrays by position
+            </summary>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the maximum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Int32[][])">
+            <summary>
+            Get the max value in arrays by position
+            </summary>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the maximum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Double[][])">
+            <summary>
+            Get the min value in arrays by position
+            </summary>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the minimum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Int32[][])">
+            <summary>
+            Get the min value in arrays by position
+            </summary>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the minimum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Double,System.Double[][])">
+            <summary>
+            Get the max value in arrays by position
+            </summary>
+            <param name="value">Constant value limit</param>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the maximum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Double,System.Double[][])">
+            <summary>
+            Get the min value in arrays by position
+            </summary>
+            <param name="value">Constant value limit</param>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the minimum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Get the greater value of an element and the given value
+            </summary>
+            <param name="array">Array of elements</param>
+            <param name="value">Given value</param>
+            <returns>An enumerable that contains the greater value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Get the smaller value of an element and the given value
+            </summary>
+            <param name="array">Array of elements</param>
+            <param name="value">Given value</param>
+            <returns>An enumerable that contains the smaller value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Int32,System.Int32[][])">
+            <summary>
+            Get the max value in arrays by position
+            </summary>
+            <param name="value">Constant value limit</param>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the maximum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Int32,System.Int32[][])">
+            <summary>
+            Get the min value in arrays by position
+            </summary>
+            <param name="value">Constant value limit</param>
+            <param name="arrays">Arrays input</param>
+            <returns>An array with each element as the minimum element in its position</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Max(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            Get the greater value of an element and the given value
+            </summary>
+            <param name="array">Array of elements</param>
+            <param name="value">Given value</param>
+            <returns>An enumerable that contains the greater value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Min(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            Get the smaller value of an element and the given value
+            </summary>
+            <param name="array">Array of elements</param>
+            <param name="value">Given value</param>
+            <returns>An enumerable that contains the smaller value</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Positive(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Get the positive value of elements
+            </summary>
+            <param name="array">Array of elements</param>
+            <returns>An array of non-negative elements</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Negative(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Get the negative value of elements
+            </summary>
+            <param name="array">Array of elements</param>
+            <returns>An array of non-positive elements</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Positive(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get the positive value of elements
+            </summary>
+            <param name="array">Array of elements</param>
+            <returns>An array of non-negative elements</returns>
+        </member>
+        <member name="M:SharpHelper.MathHelper.LinearAlgebraHelper.Negative(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get the negative value of elements
+            </summary>
+            <param name="array">Array of elements</param>
+            <returns>An array of non-positive elements</returns>
         </member>
         <member name="T:SharpHelper.MathHelper.Matrix">
             <summary>
@@ -1094,6 +1427,50 @@
             produce a shorter string representing type and size of the 2D array</param>
             <returns>String representation</returns>
         </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Paste``1(``0[0:,0:],``0[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Paste values into a range in a 2D array, original array will be modified.
+            </summary>
+            <typeparamref name="T">Element Type</typeparamref>
+            <param name="array">Source 2D array</param>
+            <param name="values">Values to be pasted</param>
+            <param name="row">Top-most row index of the range</param>
+            <param name="col">Left-most column index of the range</param>
+            <returns>Modified 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.Paste``1(``0[0:,0:],``0,System.Int32,System.Int32)">
+            <summary>
+            Paste a value into a position in a 2D array, original array will be modified.
+            </summary>
+            <typeparamref name="T">Element Type</typeparamref>
+            <param name="array">Source 2D array</param>
+            <param name="value">Value to be pasted</param>
+            <param name="row">Row index of the position</param>
+            <param name="col">Column index of the position</param>
+            <returns>Modified 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.PasteCol``1(``0[0:,0:],``0[],System.Int32,System.Int32)">
+            <summary>
+            Paste values into a column in a 2D array, original array will be modified.
+            </summary>
+            <typeparamref name="T">Element Type</typeparamref>
+            <param name="array">Source 2D array</param>
+            <param name="values">Values to be pasted</param>
+            <param name="row">Top-most row index of the column</param>
+            <param name="col">Left-most column index of the column</param>
+            <returns>Modified 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.PasteRow``1(``0[0:,0:],``0[],System.Int32,System.Int32)">
+            <summary>
+            Paste values into a row in a 2D array, original array will be modified.
+            </summary>
+            <typeparamref name="T">Element Type</typeparamref>
+            <param name="array">Source 2D array</param>
+            <param name="values">Values to be pasted</param>
+            <param name="row">Top-most row index of the row</param>
+            <param name="col">Left-most column index of the row</param>
+            <returns>Modified 2D array</returns>
+        </member>
         <member name="M:SharpHelper.Util.ArrayHelper.ToColumn(System.Object[])">
             <summary>
             Cast an 1D array into a column 2D array
@@ -1115,6 +1492,15 @@
             <typeparam name="T">Element type</typeparam>
             <param name="input">1D array</param>
             <returns>Column 2D array</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ArrayHelper.NewArrays(System.Int32,System.Int32,System.Object)">
+            <summary>
+            Initialize a new array of array with size and default value
+            </summary>
+            <param name="size1">Size of the first dimension</param>
+            <param name="size2">Size of the second dimension</param>
+            <param name="def">Default value</param>
+            <returns>Array of array with default element value</returns>
         </member>
         <member name="M:SharpHelper.Util.ArrayHelper.NewArrays``1(System.Int32,System.Int32,``0)">
             <summary>
@@ -1198,13 +1584,11 @@
             <param name="def">Default value if the key is not in the dictionary</param>
             <returns>Value</returns>
         </member>
-        <member name="M:SharpHelper.Util.DictionaryHelper.To2DArray``2(System.Collections.Generic.Dictionary{``0,``1})">
+        <member name="M:SharpHelper.Util.DictionaryHelper.To2DArray(System.Collections.IDictionary)">
             <summary>
             Cast a dictionary into a 2D array with the first column is keys and 
             the second column is values
             </summary>
-            <typeparam name="TKey">Key type</typeparam>
-            <typeparam name="TValue">Value type</typeparam>
             <param name="dict">Dictionary</param>
             <returns>2D array</returns>
         </member>
@@ -1317,6 +1701,24 @@
             <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
             <returns>A dictionary that maps value to their count</returns>
         </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.MaxId``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Get the element with maximum position in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <returns>Position of the maximum value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.MaxId``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Get the element with maximum position in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <typeparam name="TComp">Type of value to be compared, must implements <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="func">A function that convert element to value</param>
+            <returns>Position of the maximum value</returns>
+        </member>
         <member name="M:SharpHelper.Util.EnumerableHelper.MaxItem``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
             Get the element with maximum value in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
@@ -1326,6 +1728,24 @@
             <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
             <param name="func">A function that convert element to value</param>
             <returns>An element with maximum value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.MinId``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Get the element with minimum position in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <returns>Position of the minimum value</returns>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.MinId``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Get the element with minimum position in an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <typeparam name="T">Element Type</typeparam>
+            <typeparam name="TComp">Type of value to be compared, must implements <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="ie">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of elements</param>
+            <param name="func">A function that convert element to value</param>
+            <returns>Position of the minimum value</returns>
         </member>
         <member name="M:SharpHelper.Util.EnumerableHelper.MinItem``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
@@ -1341,7 +1761,7 @@
             <summary>
             Run a function several times
             </summary>
-            <typeparam name="T">Element type</typeparam>
+            <typeparam name="TOut">Element type</typeparam>
             <param name="num">Number of running</param>
             <param name="f">Function</param>
             <returns>Function results</returns>
@@ -1350,7 +1770,7 @@
             <summary>
             Run a function several times
             </summary>
-            <typeparam name="T">Element type</typeparam>
+            <typeparam name="TOut">Element type</typeparam>
             <param name="num">Number of running</param>
             <param name="f">Function</param>
             <returns>Function results</returns>
@@ -1364,12 +1784,34 @@
             <param name="obj">Object to be found</param>
             <returns>First index of the object in the enumerable, return -1 if object not found</returns>
         </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.Range(System.Int32)">
+            <summary>
+            Return the range from 0 to the number
+            </summary>
+            <param name="to">Upper boundary</param>
+            <returns>An enumerable of integer</returns>
+        </member>
         <member name="M:SharpHelper.Util.EnumerableHelper.For(System.Int32,System.Action{System.Int32})">
             <summary>
             Run a method several time
             </summary>
             <param name="times">Times for running</param>
             <param name="method">Method to run</param>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.For``1(System.Int32,System.Func{System.Int32,``0})">
+            <summary>
+            Run a method several time
+            </summary>
+            <typeparamref name="TOut">Result element type</typeparamref>
+            <param name="times">Times for running</param>
+            <param name="method">Method to run</param>
+        </member>
+        <member name="M:SharpHelper.Util.EnumerableHelper.MeshGrid(System.Object[][])">
+            <summary>
+            Create parameter sets given each dimension possible choices
+            </summary>
+            <param name="arrays">Choices in each dimension</param>
+            <returns>An enumerable of parameters choices</returns>
         </member>
         <member name="T:SharpHelper.Util.FunctionHelper">
             <summary>
@@ -1450,6 +1892,41 @@
             <param name="sequence">An array of double</param>
             <param name="percentile">percentile</param>
             <returns>Result</returns>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.IsInteger(System.Double)">
+            <summary>
+            Check a double is an integer or not
+            </summary>
+            <param name="value">Value to be checked</param>
+            <returns>True if value is an integer</returns>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.ToDoubles(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Cast an enumerable of integers to doubles
+            </summary>
+            <param name="array">Array of integers</param>
+            <returns>Array of doubles</returns>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.ToDoubles(System.Int32[0:,0:])">
+            <summary>
+            Cast an enumerable of integers to doubles
+            </summary>
+            <param name="array">Array of integers</param>
+            <returns>Array of doubles</returns>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.ToInts(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Cast an enumerable of doubles to integers
+            </summary>
+            <param name="array">Array of doubles</param>
+            <returns>Array of integers</returns>
+        </member>
+        <member name="M:SharpHelper.Util.MathHelper.ToInts(System.Double[0:,0:])">
+            <summary>
+            Cast an enumerable of doubles to integers
+            </summary>
+            <param name="array">Array of doubles</param>
+            <returns>Array of integers</returns>
         </member>
         <member name="T:SharpHelper.Util.ParameterConstraintAttribute">
             <inheritdoc />
@@ -1622,6 +2099,13 @@
         <member name="M:SharpHelper.Util.ParseHelper.ToDouble(System.Int32)">
             <summary>
             Cast an <see cref="T:System.Int32"/> into a <see cref="T:System.Double"/>
+            </summary>
+            <param name="num">Integer</param>
+            <returns>Double</returns>
+        </member>
+        <member name="M:SharpHelper.Util.ParseHelper.ToInt(System.Double)">
+            <summary>
+            Cast an <see cref="T:System.Double"/> into a <see cref="T:System.Int32"/>
             </summary>
             <param name="num">Integer</param>
             <returns>Double</returns>

@@ -1,6 +1,9 @@
 ﻿namespace SpendingPolicyAddin {
     internal static class Util {
 
+        public const double DT = 0.25;
+        public const int FREQ = 4;
+
         // Used as category in Template menu
 
         public const string FUND_CAT = "EndowmentFund";

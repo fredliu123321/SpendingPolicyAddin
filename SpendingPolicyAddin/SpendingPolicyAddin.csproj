@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExcelDna.Integration, Version=0.34.6373.42344, Culture=neutral, processorArchitecture=MSIL">
@@ -62,7 +64,8 @@
     <Compile Include="InputInvestment\InvestPerformanceBase.cs" />
     <Compile Include="InputSpending\AdjustSpendingBase.cs" />
     <Compile Include="InputSpending\SpendingPolicyBase.cs" />
-    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Model\MarketReturn.cs" />
+    <Compile Include="Model\Model.cs" />
     <Compile Include="SharpRobbin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />

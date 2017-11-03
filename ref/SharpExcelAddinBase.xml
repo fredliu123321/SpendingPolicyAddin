@@ -261,6 +261,11 @@
             Singleton class that holds <see cref="T:SharpHelper.Object.SharpObject"/> in each opening workbooks at runtime
             </summary>
         </member>
+        <member name="F:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.DEFAULT_BOOK">
+            <summary>
+            Workbook name for external debugging
+            </summary>
+        </member>
         <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.GetCache(System.String,System.Boolean)">
             <summary>
             Get the <see cref="T:SharpHelper.Object.SharpCache"/> object linked to the workbook
@@ -269,19 +274,29 @@
             <param name="create">If the cache doesn't exist, create one</param>
             <returns>Cache linked to the workbook</returns>
         </member>
-        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Register(System.String,SharpHelper.Object.SharpObject)">
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Register(System.String,SharpHelper.Object.SharpObject,System.String)">
             <summary>
             Register a <see cref="T:SharpHelper.Object.SharpObject"/> into the current cache
             </summary>
             <param name="name">Name of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
             <param name="obj">Object</param>
+            <param name="book">Workbook name</param>
             <returns>ID of the <see cref="T:SharpHelper.Object.SharpObject"/></returns>
         </member>
-        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Remove(System.String)">
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Register(SharpExcelAddinBase.ObjectSystem.SharpExcelObject,System.String)">
+            <summary>
+            Register a <see cref="T:SharpHelper.Object.SharpObject"/> into the current cache
+            </summary>
+            <param name="obj">Object</param>
+            <param name="book">Workbook name</param>
+            <returns>ID of the <see cref="T:SharpHelper.Object.SharpObject"/></returns>
+        </member>
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.Remove(System.String,System.String)">
             <summary>
             Remove a <see cref="T:SharpHelper.Object.SharpObject"/> from the current cache
             </summary>
             <param name="name">Name of the <see cref="T:SharpHelper.Object.SharpObject"/></param>
+            <param name="book">Workbook name</param>
             <returns>True if the operation runs successfully</returns>
         </member>
         <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.PrintId(System.String)">
@@ -329,11 +344,12 @@
             <param name="book">Workbook name, current workbook if blank</param>
             <returns>Grid with the first column is property names and the second column is values</returns>
         </member>
-        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.ViewCache(System.String)">
+        <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.ViewCache(System.String,System.Boolean)">
             <summary>
             View list of SharpExcelObjects in grid by book name in Excel
             </summary>
             <param name="book">"Workbook name, current workbook if blank"</param>
+            <param name="showAll">Show internal objects</param>
             <returns>Grid contains objects IDs, types, and initial cells</returns>
         </member>
         <member name="M:SharpExcelAddinBase.ObjectSystem.ExcelObjectHelper.GetObjectProperty(System.String,System.String,System.String)">
